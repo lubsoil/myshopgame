@@ -1,0 +1,130 @@
+[
+    {
+        "NAME": "WALL",
+        "OBJECT": "obj_wall",
+        "COST": 20,
+        "TAGS":[
+            "DECORATION",
+            "PATHBLOCKING"
+        ]
+    },
+    {
+        "NAME": "VEGETABLESTAND",
+        "OBJECT": "obj_vegtablestand",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "SHOESSHELF",
+        "OBJECT": "obj_shoesshelf",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "PRODUCTSHELF",
+        "OBJECT": "obj_productshelf",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "PLUSHIESBOX",
+        "OBJECT": "obj_plushiesbox",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "NEWSPAPERSHELF",
+        "OBJECT": "obj_newspapershelf",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "MUSICSHELF",
+        "OBJECT": "obj_musicshelf",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "FREEZER",
+        "OBJECT": "obj_freezer",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "BOOKSHELF",
+        "OBJECT": "obj_bookshelf",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "SELFCASHREGISTER",
+        "OBJECT": "obj_selfcashregister",
+        "COST": 40,
+        "TAGS":[
+            "CASHREGISTER",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "WORKERCASHREGISTER",
+        "OBJECT": "obj_workercashregister",
+        "COST": 40,
+        "TAGS":[
+            "CASHREGISTER",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "ATMMACHINE",
+        "OBJECT": "obj_atmmachine",
+        "COST": 40,
+        "TAGS":[
+            "SPECIAL",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ]
+    },
+    {
+        "NAME": "ENTRANCE",
+        "OBJECT": "obj_entrance",
+        "COST": 0,
+        "TAGS":[
+            "SPECIAL",
+            "INTERACTABLE"
+        ]
+    }
+]
