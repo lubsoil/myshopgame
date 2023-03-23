@@ -11,7 +11,7 @@
     {
         "NAME": "VEGETABLESTAND",
         "OBJECT": "obj_vegtablestand",
-        "COST": 40,
+        "COST": 30,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -21,7 +21,7 @@
     {
         "NAME": "SHOESSHELF",
         "OBJECT": "obj_shoesshelf",
-        "COST": 40,
+        "COST": 80,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -31,7 +31,7 @@
     {
         "NAME": "PRODUCTSHELF",
         "OBJECT": "obj_productshelf",
-        "COST": 40,
+        "COST": 50,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -41,7 +41,7 @@
     {
         "NAME": "PLUSHIESBOX",
         "OBJECT": "obj_plushiesbox",
-        "COST": 40,
+        "COST": 55,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -51,7 +51,7 @@
     {
         "NAME": "NEWSPAPERSHELF",
         "OBJECT": "obj_newspapershelf",
-        "COST": 40,
+        "COST": 45,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -61,7 +61,7 @@
     {
         "NAME": "MUSICSHELF",
         "OBJECT": "obj_musicshelf",
-        "COST": 40,
+        "COST": 75,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -71,7 +71,7 @@
     {
         "NAME": "FREEZER",
         "OBJECT": "obj_freezer",
-        "COST": 40,
+        "COST": 150,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -81,7 +81,7 @@
     {
         "NAME": "BOOKSHELF",
         "OBJECT": "obj_bookshelf",
-        "COST": 40,
+        "COST": 55,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
@@ -91,7 +91,7 @@
     {
         "NAME": "SELFCASHREGISTER",
         "OBJECT": "obj_selfcashregister",
-        "COST": 40,
+        "COST": 105,
         "TAGS":[
             "CASHREGISTER",
             "PATHBLOCKING",
@@ -101,7 +101,7 @@
     {
         "NAME": "WORKERCASHREGISTER",
         "OBJECT": "obj_workercashregister",
-        "COST": 40,
+        "COST": 55,
         "TAGS":[
             "CASHREGISTER",
             "PATHBLOCKING",
@@ -111,7 +111,7 @@
     {
         "NAME": "ATMMACHINE",
         "OBJECT": "obj_atmmachine",
-        "COST": 40,
+        "COST": 250,
         "TAGS":[
             "SPECIAL",
             "PATHBLOCKING",

@@ -10,7 +10,11 @@ if(obj != noone){
 	var temp_instance_3 = instance_position(obj.x+64+32,obj.y+32,obj_buildingobject);
 	var temp_instance_4 = instance_position(obj.x+32,obj.y+64+32,obj_buildingobject);
 	
-	var refund = round(obj.building_cost*0.2);
+	var building = findBuildingByObject(buildings_list,obj);
+	var refund = 0;
+	if(building != undefined){
+		refund = round(building[? "COST"]*0.2)
+	}
 	user_money += refund;
 	
 	with(obj){

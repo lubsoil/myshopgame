@@ -38,6 +38,18 @@ function findBuildingByName(building_list,name){
 	return undefined;
 }
 
+function findBuildingByObject(building_list,object){
+	var object_name = object_get_name(object.object_index)
+	for(var i=0;i<ds_list_size(building_list);i++){
+		var building = ds_list_find_value(building_list,i);
+		if(building[? "OBJECT"] == object_name){
+			return building;
+		}
+	}
+	
+	return undefined;
+}
+
 function findBuildingsWithTag(building_list,tag){
 	var buildings = ds_list_create();
 	for(var i=0;i<ds_list_size(building_list);i++){

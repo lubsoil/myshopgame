@@ -4,14 +4,16 @@ camera_move_xstart = 0;
 camera_move_ystart = 0;
 camera_move_enabled = false;
 
+ui_tabs_selected = undefined;
+
 debug_info_display = true;
 
 buildings_list = loadBuildingList();
 buildings_tags = getListOfUniqueBuildingTags(buildings_list);
 
 
-buildmode_items_tag = ds_list_find_value(buildings_tags,0);
-buildmode_items_list = findBuildingsWithTag(buildings_list,buildmode_items_tag);
+buildmode_items_tag = "ALL";
+buildmode_items_list = buildmode_items_tag == "ALL" ? buildings_list : findBuildingsWithTag(buildings_list,buildmode_items_tag);
 buildmode_object = undefined;
 buildmode_mode = 0;
 buildmode_direction = 0;
@@ -23,7 +25,7 @@ mp_grid_add_instances(collision_grid,obj_buildingobject,0);
 
 available_products = getAvailableProducts();
 
-show_popularity = 0;
+shop_popularity = 0;
 
 guests_minimum = 1;
 guests_maximum = 3;

@@ -1,6 +1,8 @@
 /// @description CREATE EVENT
 event_inherited();
 
+worker_name = "Pracownik";
+
 person_type = "WORKER";
 
 appearance_head = floor(random(2));
