@@ -2,6 +2,7 @@
 event_inherited();
 
 worker_name = getRandomPeopleName();
+worker_salary = 25;
 
 person_type = "WORKER";
 

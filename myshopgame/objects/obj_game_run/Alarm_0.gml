@@ -6,8 +6,8 @@ if(time_hour < 1320){
 	time_day++;
 	
 	for(var i=0; i<instance_number(obj_worker); i++){
-		removeMoney(30, "WORKER");
+		removeMoney(obj_worker.worker_salary, "WORKER");
 	}
 	
 }
-alarm[0] = 60;
+alarm[0] = 45;
