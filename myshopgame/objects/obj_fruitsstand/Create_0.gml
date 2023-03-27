@@ -4,7 +4,7 @@ event_inherited();
 
 building_cost = 30;
 
-ds_map_add(product_stock_default, "VEGTABLE",15);
+ds_map_add(product_stock_default, "FRUIT",15);
 
 ds_map_copy(product_stock,product_stock_default);
 

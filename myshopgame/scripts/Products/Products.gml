@@ -3,27 +3,37 @@
 function getProductCost(name){
 	switch(name){
 		case "VEGTABLE":
-			return 3;
+			return 2;
 		case "FRUIT":
-			return 4;
-		case "FROZENPRODUCT":
-			return 7;
+			return 3;
+		case "ICECREAM":
+			return 5;
+		case "FRIES":
+			return 5;
+		case "VEGETABLEMIX":
+			return 5;
 		case "BOOK":
 			return 15;
 		case "COMIC":
-			return 25;
-		case "NEWSPAPER":
 			return 10;
+		case "NEWSPAPER":
+			return 4;
 		case "VINYL":
-			return 14;
+			return 25;
 		case "MUSICDISC":
-			return 8;
+			return 10;
 		case "SHOES":
-			return 18;
+			return 30;
 		case "SMALLPLUSHIE":
-			return 8;
+			return 6;
 		case "BIGPLUSHIE":
-			return 16;
+			return 12;
+		case "BOARDGAME":
+			return 20;
+		case "SCFIGURE":
+			return 8;
+		case "EFTSFIGURE":
+			return 8;
 		default:
 			return 10;
 	}

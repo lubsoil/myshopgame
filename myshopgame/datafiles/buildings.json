@@ -1,102 +1,225 @@
 [
     {
+        "NAME": "ENTRANCE",
+        "OBJECT": "obj_entrance",
+        "COST": 0,
+        "TAGS":[
+            "SPECIAL",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
+    },
+    {
         "NAME": "WALL",
         "OBJECT": "obj_wall",
         "COST": 20,
         "TAGS":[
             "DECORATION",
             "PATHBLOCKING"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "NONE",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     },
     {
-        "NAME": "VEGETABLESTAND",
-        "OBJECT": "obj_vegtablestand",
-        "COST": 30,
+        "NAME": "PRODUCTSHELF",
+        "OBJECT": "obj_productshelf",
+        "COST": 35,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     },
     {
-        "NAME": "SHOESSHELF",
-        "OBJECT": "obj_shoesshelf",
+        "NAME": "VEGETABLESTAND",
+        "OBJECT": "obj_vegtablestand",
+        "COST": 33,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
+    },
+    {
+        "NAME": "FRUITSTAND",
+        "OBJECT": "obj_fruitsstand",
+        "COST": 40,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
+    },
+    {
+        "NAME": "NEWSPAPERSHELF",
+        "OBJECT": "obj_newspapershelf",
+        "COST": 51,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
+    },
+    {
+        "NAME": "PLUSHIESBOX",
+        "OBJECT": "obj_plushiesbox",
+        "COST": 70,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
+    },
+    {
+        "NAME": "BOOKSHELF",
+        "OBJECT": "obj_bookshelf",
+        "COST": 70,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
+    },
+    {
+        "NAME": "EGMERCHANDISESHELVE",
+        "OBJECT": "obj_egmerchandiseshelve",
         "COST": 80,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
     },
     {
-        "NAME": "PRODUCTSHELF",
-        "OBJECT": "obj_productshelf",
-        "COST": 50,
+        "NAME": "BOARDGAMESSHELVE",
+        "OBJECT": "obj_boardgamesshelve",
+        "COST": 90,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
-    },
-    {
-        "NAME": "PLUSHIESBOX",
-        "OBJECT": "obj_plushiesbox",
-        "COST": 55,
-        "TAGS":[
-            "SHELVE",
-            "PATHBLOCKING",
-            "INTERACTABLE"
-        ]
-    },
-    {
-        "NAME": "NEWSPAPERSHELF",
-        "OBJECT": "obj_newspapershelf",
-        "COST": 45,
-        "TAGS":[
-            "SHELVE",
-            "PATHBLOCKING",
-            "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     },
     {
         "NAME": "MUSICSHELF",
         "OBJECT": "obj_musicshelf",
-        "COST": 75,
+        "COST": 98,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     },
     {
         "NAME": "FREEZER",
         "OBJECT": "obj_freezer",
-        "COST": 150,
+        "COST": 113,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     },
     {
-        "NAME": "BOOKSHELF",
-        "OBJECT": "obj_bookshelf",
-        "COST": 55,
+        "NAME": "SHOESSHELF",
+        "OBJECT": "obj_shoesshelf",
+        "COST": 145,
         "TAGS":[
             "SHELVE",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     },
     {
         "NAME": "SELFCASHREGISTER",
         "OBJECT": "obj_selfcashregister",
-        "COST": 105,
+        "COST": 155,
         "TAGS":[
             "CASHREGISTER",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     },
     {
         "NAME": "WORKERCASHREGISTER",
@@ -106,7 +229,13 @@
             "CASHREGISTER",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "CUSTOMER",
+            "LEFT": "NONE",
+            "BOTTOM": "WORKER",
+            "RIGHT": "NONE"
+        }
     },
     {
         "NAME": "ATMMACHINE",
@@ -116,15 +245,12 @@
             "SPECIAL",
             "PATHBLOCKING",
             "INTERACTABLE"
-        ]
-    },
-    {
-        "NAME": "ENTRANCE",
-        "OBJECT": "obj_entrance",
-        "COST": 0,
-        "TAGS":[
-            "SPECIAL",
-            "INTERACTABLE"
-        ]
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     }
 ]

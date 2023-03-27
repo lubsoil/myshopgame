@@ -5,41 +5,43 @@ if(worker_state == 0){
 	var free_workercashregister = tryFindFreeWorkerCashRegister();
 	var broken_atmmachine = tryFindBrokenATMMachine();
 	
-	if(free_workercashregister != noone){
+	if(free_workercashregister != noone && worker_ai_cashregister){
 		worker_state = 3;
 		setObjectPathfinding(free_workercashregister);
 		target_object.workplace_worker = self;
 		interaction_attempts = 0;
-	}else if(broken_selfcashregister != noone){
+	}else if(broken_selfcashregister != noone && worker_ai_repairing){
 		worker_state = 2;
 		setObjectPathfinding(broken_selfcashregister);
 		target_object.repair_worker = self;
-		interaction_time = 120;
+		interaction_time = 360 - skill_repairing*60;
 		interaction_attempts = 0;
-	}else if(empty_shelf != noone){
+	}else if(empty_shelf != noone && worker_ai_productstacking){
 		worker_state = 1;
 		setObjectPathfinding(empty_shelf);
 		target_object.restock_worker = self;
-		interaction_time = 120;
+		interaction_time = 360 - skill_productstacking*60;
 		interaction_attempts = 0;
-	}else if(broken_atmmachine != noone){
+	}else if(broken_atmmachine != noone && worker_ai_repairing){
 		worker_state = 4;
 		setObjectPathfinding(broken_atmmachine);
 		target_object.repair_worker = self;
-		interaction_time = 120;
+		interaction_time = 360 - skill_repairing*60;
 		interaction_attempts = 0;
 	}else{
 		if(point_distance(x,y,target_x,target_y) < 10 || target_type == "NONE"){
-			var point_x = 64*floor(random(10))+32;
-			var point_y = 64*floor(random(10))+32;
+			var random_building_element = instance_find(obj_buildingobject,floor(random(instance_number(obj_buildingobject))));
+			var point_x = random_building_element.x + (floor(random(5))-2)*64;
+			var point_y = random_building_element.y + (floor(random(5))-2)*64;
 			while(instance_position(point_x,point_y,obj_buildingobject) != noone){
-				point_x = 64*floor(random(10))+32;
-				point_y = 64*floor(random(10))+32;
+				random_building_element = instance_find(obj_buildingobject,floor(random(instance_number(obj_buildingobject))));
+				point_x = random_building_element.x + (floor(random(5))-2)*64;
+				point_y = random_building_element.y + (floor(random(5))-2)*64;
 			}
 			setPointPathfinding(point_x,point_y);
 		}
 	}
-}else if(worker_state == 1){
+}else if(worker_state == 1 && worker_ai_productstacking){
 	if(isTargetValid()){
 		if(target_object.product_stock_empty){
 			if(interaction_time > 0){
@@ -51,6 +53,7 @@ if(worker_state == 0){
 				with(target_object){
 					event_user(1);	
 				}
+				gainSkillProgress("PRODUCTSTACKING")
 				resetPathfinding();
 				worker_state = 0;
 			}
@@ -59,7 +62,7 @@ if(worker_state == 0){
 			if(target_object != noone){
 				target_object.restock_worker = self;
 			}
-			interaction_time = 120;
+			interaction_time = 360 - skill_productstacking*60;
 		}
 	}else{
 		setObjectPathfinding(tryFindEmptyShelf());
@@ -74,9 +77,9 @@ if(worker_state == 0){
 				interaction_attempts++;
 			}	
 		}
-		interaction_time = 120;
+		interaction_time = 360 - skill_productstacking*60;
 	}
-}else if(worker_state == 2){
+}else if(worker_state == 2 && worker_ai_repairing){
 	if(isTargetValid()){
 		if(target_object.machine_broken){
 			if(interaction_time > 0){
@@ -88,6 +91,7 @@ if(worker_state == 0){
 				with(target_object){
 					event_user(1);	
 				}
+				gainSkillProgress("REPAIRING")
 				resetPathfinding();
 				worker_state = 0;
 			}
@@ -96,7 +100,7 @@ if(worker_state == 0){
 			if(target_object != noone){
 				target_object.repair_worker = self;
 			}
-			interaction_time = 120;
+			interaction_time = 360 - skill_repairing*60;
 		}
 	}else{
 		setObjectPathfinding(tryFindBrokenSelfCashRegister());
@@ -111,9 +115,9 @@ if(worker_state == 0){
 				interaction_attempts++;
 			}	
 		}
-		interaction_time = 120;
+		interaction_time = 360 - skill_repairing*60;
 	}
-}else if(worker_state == 3){
+}else if(worker_state == 3 && worker_ai_cashregister){
 	if(isTargetValid()){
 		if(point_distance(x,y,target_x,target_y) < 10){
 			texture_rotation = point_direction(x,y,target_object.x,target_object.y);
@@ -137,7 +141,7 @@ if(worker_state == 0){
 			}
 		}
 	}
-}else if(worker_state == 4){
+}else if(worker_state == 4 && worker_ai_repairing){
 	if(isTargetValid()){
 		if(target_object.machine_broken){
 			if(interaction_time > 0){
@@ -149,6 +153,7 @@ if(worker_state == 0){
 				with(target_object){
 					event_user(1);	
 				}
+				gainSkillProgress("REPAIRING")
 				resetPathfinding();
 				worker_state = 0;
 			}
@@ -157,7 +162,7 @@ if(worker_state == 0){
 			if(target_object != noone){
 				target_object.repair_worker = self;
 			}
-			interaction_time = 120;
+			interaction_time = 360 - skill_repairing*60;
 		}
 	}else{
 		setObjectPathfinding(tryFindBrokenATMMachine());
@@ -172,8 +177,24 @@ if(worker_state == 0){
 				interaction_attempts++;
 			}	
 		}
-		interaction_time = 120;
+		interaction_time = 360 - skill_repairing*60;
 	}
+}else{
+	if(isTargetValid()){
+		if(worker_state == 1){
+			target_object.restock_worker = noone;
+		}else if(worker_state == 2){
+			target_object.repair_worker = noone;
+		}else if(worker_state == 3){
+			target_object.workplace_worker = noone; 
+			target_object.cashregister_available = false;
+		}else if(worker_state == 4){
+			target_object.repair_worker = noone;
+		}
+	}
+	resetPathfinding();
+	worker_state = 0;
+	interaction_attempts = 0;
 }
 
 if(speed == 0){

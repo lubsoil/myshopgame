@@ -8,8 +8,6 @@ isBottomFreePosition = "none";
 offcenter_x = 0;
 offcenter_y = 0;
 
-building_cost = 0;
-
 var temp_instance = instance_position(x-64,y,obj_buildingobject);
 if(temp_instance != noone){
 	with(temp_instance){

@@ -10,7 +10,7 @@ function loadJSONFile(path){
 	    }
 	    file_text_close(theJsonFile);
 		
-	    var theJsonMap = json_decode(theData);
+	    var theJsonMap = json_parse(theData);
 	    return theJsonMap;
 	}else{
 	    return undefined;

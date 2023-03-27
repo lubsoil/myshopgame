@@ -6,7 +6,10 @@ camera_move_enabled = false;
 
 ui_tabs_selected = undefined;
 
-debug_info_display = true;
+debug_info_display = false;
+if(debug_mode == true || GM_build_type == "run"){
+	debug_info_display = true;
+}
 
 buildings_list = loadBuildingList();
 buildings_tags = getListOfUniqueBuildingTags(buildings_list);
@@ -18,7 +21,8 @@ buildmode_object = undefined;
 buildmode_mode = 0;
 buildmode_direction = 0;
 
-
+time_day = 1;
+time_hour = 360;
 
 collision_grid = mp_grid_create(0,0,room_width/64,room_height/64,64,64);
 mp_grid_add_instances(collision_grid,obj_buildingobject,0);
@@ -31,3 +35,5 @@ guests_minimum = 1;
 guests_maximum = 3;
 
 user_money = 500;
+
+alarm[0] = 60;

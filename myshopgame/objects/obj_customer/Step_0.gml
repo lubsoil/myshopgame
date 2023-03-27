@@ -65,77 +65,13 @@ if(customer_state == 0){
 				}
 			}	
 		}
-		/*if(target_object != noone){
-			if(instance_exists(target_object)){
-				var product_name = ds_list_find_value(shopping_list,current_product);
-				var shelf_amount = target_object.product_stock[? product_name];
-				if(shelf_amount > 0){
-					if(interaction_time > 0){
-						if(point_distance(x,y,target_x,target_y) < 10){
-							texture_rotation = point_direction(x,y,target_object.x,target_object.y);
-							interaction_time--;
-						}
-					}else{
-						
-						interaction_attempts = 0;
-						target_object.product_stock[? product_name] -= 1;
-						
-						if(target_object.product_stock[? product_name] == 0){
-							target_object.product_stock_empty = true;
-						}
-						
-						ds_list_add(cart_list,product_name);
-						ds_list_delete(shopping_list,current_product);
-						current_product = floor(random(ds_list_size(shopping_list)));
-					
-						interaction_time = 120;
-						target_x = -100;
-						target_y = -100;
-						target_object = noone;
-					}
-				}else{
-					target_object = findCurrentProduct();
-					if(target_object == noone){
-						if(interaction_attempts > 100){
-							interaction_attempts = 0;
-							ds_list_delete(shopping_list,current_product);
-							current_product = floor(random(ds_list_size(shopping_list)));
-						}else{
-							interaction_attempts++;	
-						}
-					}	
-				}
-			}else{
-				target_object = findCurrentProduct();
-				if(target_object == noone){
-					if(interaction_attempts > 100){
-						interaction_attempts = 0;
-						ds_list_delete(shopping_list,current_product);
-						current_product = floor(random(ds_list_size(shopping_list)));
-					}else{
-						interaction_attempts++;	
-					}
-				}	
-			}
-		}else{
-			if(interaction_attempts > 100){
-				interaction_attempts = 0;
-				ds_list_delete(shopping_list,current_product);
-				current_product = floor(random(ds_list_size(shopping_list)));
-			}else{
-				target_object = findCurrentProduct();
-				if(target_object == noone){
-					interaction_attempts++;	
-				}
-			}
-		}*/
 	}else{
 		target_object = noone;
 		target_x = -100;
 		target_y = -100;
 		if(ds_list_size(cart_list) > 0){
 			customer_state = 2;
-			interaction_time = 60;	
+			interaction_time = undefined;	
 		}else{
 			customer_state = 3;
 			interaction_time = 20;	
@@ -147,12 +83,18 @@ if(customer_state == 0){
 		if(instance_exists(target_object)){
 			if(target_object.cashregister_available){
 				if(point_distance(x,y,target_x,target_y) < 10){
-					if(interaction_time > 0){
+					if(interaction_time == undefined){
+						if(target_object.object_index == obj_selfcashregister){
+							interaction_time = 120 + 30*ds_list_size(cart_list);
+						}else if(target_object.object_index == obj_workercashregister){
+							interaction_time = 300 - target_object.workplace_worker.skill_cashregister*60;
+						}
+					}else if(interaction_time > 0){
 						interaction_time--;
 						texture_rotation = point_direction(x,y,target_object.x,target_object.y);
 					}else{
 						if(ds_list_size(cart_list) > 0){
-							sellProduct();
+							sellAllProducts();
 							//PSUCIE SIĘ KASY SKLEOPWEJ
 							if(target_object.object_index == obj_selfcashregister){
 								var broke_chance = floor(random(100));
@@ -164,7 +106,11 @@ if(customer_state == 0){
 									target_object.machine_brokechance+=1;
 								}
 							}
-							interaction_time = 30;
+							if(target_object.object_index == obj_workercashregister){
+								with(target_object.workplace_worker){
+									gainSkillProgress("CASHREGISTER");	
+								}
+							}
 						}else{
 							customer_state = 3;
 							interaction_time = 20;
@@ -204,6 +150,7 @@ if(customer_state == 0){
 			if(target_object.atmmachine_available){
 				if(point_distance(x,y,target_x,target_y) < 10){
 					if(interaction_time > 0){
+						texture_rotation = point_direction(x,y,target_object.x,target_object.y);
 						interaction_time--;
 					}else{
 						atmmachine_used = true;

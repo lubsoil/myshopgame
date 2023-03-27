@@ -4,8 +4,8 @@ event_inherited();
 
 building_cost = 50;
 
-ds_map_add(product_stock_default, "VINYL",4);
-ds_map_add(product_stock_default, "MUSICDISC",8);
+ds_map_add(product_stock_default, "VINYL",3);
+ds_map_add(product_stock_default, "MUSICDISC",10);
 
 ds_map_copy(product_stock,product_stock_default);
 

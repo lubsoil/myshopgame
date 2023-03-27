@@ -2,9 +2,9 @@
 // W tym edytorze możesz zapisać swój kod
 event_inherited();
 
-building_cost = 125
-
-ds_map_add(product_stock_default, "FROZENPRODUCT",7);
+ds_map_add(product_stock_default, "ICECREAM",5);
+ds_map_add(product_stock_default, "FRIES",5);
+ds_map_add(product_stock_default, "VEGETABLEMIX",5);
 
 ds_map_copy(product_stock,product_stock_default);
 

@@ -44,7 +44,7 @@ alarm[0] = 2;
 function findCurrentProduct(){
 	var current_product_name = ds_list_find_value(shopping_list,current_product);
 	
-	if(current_product_name == "VEGTABLE" || current_product_name = "FRUIT"){
+	if(current_product_name == "VEGTABLE"){
 		var amount_shelfs = instance_number(obj_vegtablestand);
 		
 		if(amount_shelfs > 0){
@@ -56,7 +56,19 @@ function findCurrentProduct(){
 				}
 			}
 		}	
-	}else if(current_product_name == "FROZENPRODUCT"){
+	}else if( current_product_name = "FRUIT"){
+		var amount_shelfs = instance_number(obj_fruitsstand);
+		
+		if(amount_shelfs > 0){
+			var shelf = instance_find(obj_fruitsstand, floor(random(amount_shelfs)));
+			var stock_amount = shelf.product_stock[? current_product_name];
+			if(stock_amount != undefined){
+				if(stock_amount > 0){
+					return shelf;
+				}
+			}
+		}	
+	}else if(current_product_name == "FRIES" || current_product_name == "ICECREAM" || current_product_name == "VEGETABLEMIX"){
 		var amount_shelfs = instance_number(obj_freezer);
 		
 		if(amount_shelfs > 0){
@@ -128,6 +140,30 @@ function findCurrentProduct(){
 				}
 			}
 		}	
+	}else if(current_product_name == "SCFIGURE" || current_product_name == "EFTSFIGURE"){
+		var amount_shelfs = instance_number(obj_egmerchandiseshelve);
+		
+		if(amount_shelfs > 0){
+			var shelf = instance_find(obj_egmerchandiseshelve, floor(random(amount_shelfs)));
+			var stock_amount = shelf.product_stock[? current_product_name];
+			if(stock_amount != undefined){
+				if(stock_amount > 0){
+					return shelf;
+				}
+			}
+		}	
+	}else if(current_product_name == "BOARDGAME"){
+		var amount_shelfs = instance_number(obj_boardgamesshelve);
+		
+		if(amount_shelfs > 0){
+			var shelf = instance_find(obj_boardgamesshelve, floor(random(amount_shelfs)));
+			var stock_amount = shelf.product_stock[? current_product_name];
+			if(stock_amount != undefined){
+				if(stock_amount > 0){
+					return shelf;
+				}
+			}
+		}	
 	}else{
 		var amount_shelfs = instance_number(obj_productshelf);
 		
@@ -168,10 +204,12 @@ function tryFindWorkingATMMachine(){
 	return noone;
 }
 
-function sellProduct(){
-	var product_name = ds_list_find_value(cart_list ,ds_list_size(cart_list)-1);
-	obj_game_run.user_money += getProductCost(product_name);
-	ds_list_delete(cart_list ,ds_list_size(cart_list)-1);
+function sellAllProducts(){
+	for(var i=0;i<ds_list_size(cart_list);i++){
+		var product_name = ds_list_find_value(cart_list, i);
+		addMoney(getProductCost(product_name),"PRODUCTSELL");
+	}
+	ds_list_clear(cart_list);
 }
 
 image_speed = 0;

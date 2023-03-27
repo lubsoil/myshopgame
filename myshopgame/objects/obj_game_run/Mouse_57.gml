@@ -15,7 +15,7 @@ if(obj != noone){
 	if(building != undefined){
 		refund = round(building[? "COST"]*0.2)
 	}
-	user_money += refund;
+	addMoney(refund,"BUILDMODE");
 	
 	with(obj){
 		instance_destroy();	
