@@ -82,46 +82,61 @@ if(customer_state == 0){
 	if(target_object != noone){
 		if(instance_exists(target_object)){
 			if(target_object.cashregister_available){
-				if(point_distance(x,y,target_x,target_y) < 10){
-					if(interaction_time == undefined){
-						if(target_object.object_index == obj_selfcashregister){
-							interaction_time = 120 + 30*ds_list_size(cart_list);
-						}else if(target_object.object_index == obj_workercashregister){
-							interaction_time = 300 - target_object.workplace_worker.skill_cashregister*60;
-						}
-					}else if(interaction_time > 0){
-						interaction_time--;
-						texture_rotation = point_direction(x,y,target_object.x,target_object.y);
-					}else{
-						if(ds_list_size(cart_list) > 0){
-							sellAllProducts();
-							//PSUCIE SIĘ KASY SKLEOPWEJ
-							if(target_object.object_index == obj_selfcashregister){
-								var broke_chance = floor(random(100));
-								if(target_object.machine_brokechance > broke_chance){
-									with(target_object){
-										event_user(1);	
-									}
-								}else{
-									target_object.machine_brokechance+=1;
-								}
-							}
-							if(target_object.object_index == obj_workercashregister){
-								with(target_object.workplace_worker){
-									gainSkillProgress("CASHREGISTER");	
-								}
-							}
-						}else{
-							customer_state = 3;
-							interaction_time = 20;
-							target_object = noone;
-							target_x = -100;
-							target_y = -100;
-							alarm_set(0, 2);
-						}
-					
-					}
+				if(ds_list_find_index(target_object.queue_customer,self) == -1){
+					ds_list_add(target_object.queue_customer,self);	
 				}
+				if(ds_list_find_index(target_object.queue_customer,self) == 0){
+					if(target_type == "NONE"){
+						target_type = "OBJECT";
+						alarm_set(0, 2);
+					}
+					if(point_distance(x,y,target_x,target_y) < 10){
+						if(interaction_time == undefined){
+							if(target_object.object_index == obj_selfcashregister){
+								interaction_time = 120 + 30*ds_list_size(cart_list);
+							}else if(target_object.object_index == obj_workercashregister){
+								interaction_time = 300 - target_object.workplace_worker.skill_cashregister*60;
+							}
+						}else if(interaction_time > 0){
+							interaction_time--;
+							texture_rotation = point_direction(x,y,target_object.x,target_object.y);
+						}else{
+							if(ds_list_size(cart_list) > 0){
+								sellAllProducts();
+								//PSUCIE SIĘ KASY SKLEOPWEJ
+								if(target_object.object_index == obj_selfcashregister){
+									var broke_chance = floor(random(100));
+									if(target_object.machine_brokechance > broke_chance){
+										with(target_object){
+											event_user(1);	
+										}
+									}else{
+										target_object.machine_brokechance+=1;
+									}
+								}
+								if(target_object.object_index == obj_workercashregister){
+									with(target_object.workplace_worker){
+										gainSkillProgress("CASHREGISTER");	
+									}
+								}
+								ds_list_delete(target_object.queue_customer,0);
+							}
+							if(ds_list_size(cart_list) <= 0){
+								
+								customer_state = 3;
+								interaction_time = 20;
+								target_object = noone;
+								target_x = -100;
+								target_y = -100;
+								alarm_set(0, 2);
+							}
+					
+						}
+					}
+				}else{
+					target_type = "NONE";
+				}
+				
 			}else{
 				setObjectPathfinding(tryFindWorkingCashRegister());
 			}

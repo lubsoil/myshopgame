@@ -7,6 +7,7 @@ if(machine_broken){
 	image_index = 0;
 }else{
 	cashregister_available = false;
+	ds_list_clear(queue_customer);
 	machine_broken = true;
 	image_index = 1;
 }

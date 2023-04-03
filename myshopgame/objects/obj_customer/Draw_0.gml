@@ -11,7 +11,7 @@ if(appearance_head == 0){
 
 if(obj_game_run.debug_info_display){
 	draw_set_color(c_white);
-	draw_text(x-32,y,string(customer_state) + " " + string(interaction_time));
+	draw_text(x-32,y,string(customer_state) + " " + (interaction_time == undefined ? "?" : string(interaction_time)));
 	draw_set_color(c_lime);
 	draw_text(x-32,y+16,string(ds_list_size(shopping_list)) + " " + string(ds_list_size(cart_list)))
 

@@ -11,12 +11,12 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "buildingobjects",
-    "path": "folders/Obiekty/buildingobjects.yy",
+    "name": "Buildmode Objects",
+    "path": "folders/Obiekty/Buildmode Objects.yy",
   },
   "parentObjectId": {
-    "name": "obj_buildingobject",
-    "path": "objects/obj_buildingobject/obj_buildingobject.yy",
+    "name": "obj_buildmodeobject",
+    "path": "objects/obj_buildmodeobject/obj_buildmodeobject.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

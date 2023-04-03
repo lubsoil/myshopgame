@@ -13,23 +13,39 @@ function loadBuildingList(building_list = undefined){
 	for(var i=0;i<array_length(building_temp);i++){
 		var building = building_temp[i];
 		var building_new = ds_map_create();
-		ds_map_add(building_new,"NAME",building.NAME);
-		ds_map_add(building_new,"OBJECT",building.OBJECT);
-		ds_map_add(building_new,"COST",building.COST);
+		ds_map_add(building_new,"NAME",building[$ "NAME"]);
+		ds_map_add(building_new,"OBJECT",building[$ "OBJECT"]);
+		ds_map_add(building_new,"COST",building[$ "COST"]);
 		
-		var buildingtags = building.TAGS;
+		var buildingtags = building[$ "TAGS"];
 		var buildingtags_new = ds_list_create();
 		for(var j=0;j<array_length(buildingtags);j++){
 			ds_list_add(buildingtags_new,buildingtags[j]);
 		}
 		ds_map_add_list(building_new,"TAGS",buildingtags_new);
 		
-		var buildingip = building.INTERACTION_POSITIONS;
+		if(variable_struct_exists(building,"ALTERNATIVE_SPRITE")){
+			ds_map_add(building_new,"ALTERNATIVE_SPRITE",building[$ "ALTERNATIVE_SPRITE"]);
+		}
+		
+		if(variable_struct_exists(building,"CREATE_VARIABLES")){
+			var buildingcv =  building[$ "CREATE_VARIABLES"];
+			var buildingcv_new = ds_map_create();
+			var keys = variable_struct_get_names(buildingcv);
+			for (var j = array_length(keys)-1; j >= 0; --j) {
+			    var k = keys[j];
+			    var v = buildingcv[$ k];
+				ds_map_add(buildingcv_new,k,v);
+			}
+			ds_map_add(building_new,"CREATE_VARIABLES",buildingcv_new);
+		}
+		
+		var buildingip = building[$ "INTERACTION_POSITIONS"];
 		var buildingip_new = ds_map_create();
-		ds_map_add(buildingip_new, "TOP", buildingip.TOP);
-		ds_map_add(buildingip_new, "LEFT", buildingip.LEFT);
-		ds_map_add(buildingip_new, "BOTTOM", buildingip.BOTTOM);
-		ds_map_add(buildingip_new, "RIGHT", buildingip.RIGHT);
+		ds_map_add(buildingip_new, "TOP", buildingip[$ "TOP"]);
+		ds_map_add(buildingip_new, "LEFT", buildingip[$ "LEFT"]);
+		ds_map_add(buildingip_new, "BOTTOM", buildingip[$ "BOTTOM"]);
+		ds_map_add(buildingip_new, "RIGHT", buildingip[$ "RIGHT"]);
 		ds_map_add_map(building_new,"INTERACTION_POSITIONS",buildingip_new);
 		
 		ds_list_add(building_list, building_new);
@@ -98,4 +114,18 @@ function hasBuildingTag(building,tag){
 		return true;
 	}
 	return false;
+}
+
+//
+
+function getHighestCashRehisterQueue(){
+	var highest_value = 0;
+	for(var i=0;i<instance_number(obj_cashregister);i++){
+		var number = ds_list_size(instance_find(obj_cashregister,i).queue_customer);
+		if(number > highest_value){
+			highest_value = number;
+		}
+	}
+	
+	return highest_value;
 }

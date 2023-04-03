@@ -1,4 +1,5 @@
 /// @description Wstaw opis w tym miejscu
 // W tym edytorze możesz zapisać swój kod
 event_inherited();
-building_cost = 20;
+image_speed = 0;
+event_user(0);

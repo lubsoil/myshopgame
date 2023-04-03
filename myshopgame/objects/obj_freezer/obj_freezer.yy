@@ -9,7 +9,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "shelves",
-    "path": "folders/Obiekty/buildingobjects/shelves.yy",
+    "path": "folders/Obiekty/Buildmode Objects/shelves.yy",
   },
   "parentObjectId": {
     "name": "obj_shelf",

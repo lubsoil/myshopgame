@@ -8,6 +8,6 @@ offcenter_y = 0;
 
 building_cost = 0;
 
-depth = 25;
+depth = 100;
 
 alarm[0] = 1;

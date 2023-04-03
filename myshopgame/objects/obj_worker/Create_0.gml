@@ -96,7 +96,7 @@ function tryFindFreeWorkerCashRegister(){
 function gainSkillProgress(type){
 	switch(type){
 		case "REPAIRING":
-			if(skill_repairing_progress < 10*skill_repairing + 10){
+			if(skill_repairing_progress < 10*skill_repairing + 7){
 				skill_repairing_progress++;
 			}else{
 				if(skill_repairing < 3){
@@ -106,7 +106,7 @@ function gainSkillProgress(type){
 			}
 		break;
 		case "CASHREGISTER":
-			if(skill_cashregister_progress < 10*skill_cashregister + 10){
+			if(skill_cashregister_progress < 25*skill_cashregister + 15){
 				skill_cashregister_progress++;
 			}else{
 				if(skill_cashregister < 3){
@@ -116,7 +116,7 @@ function gainSkillProgress(type){
 			}
 		break;
 		case "PRODUCTSTACKING":
-			if(skill_productstacking_progress < 10*skill_productstacking + 10){
+			if(skill_productstacking_progress < 15*skill_productstacking + 10){
 				skill_productstacking_progress++;
 			}else{
 				if(skill_productstacking < 3){
@@ -126,6 +126,8 @@ function gainSkillProgress(type){
 			}
 		break;
 	}
+	
+	worker_salary = 25 + skill_productstacking*5 + skill_cashregister_progress*5 + skill_repairing_progress*5
 }
 
 

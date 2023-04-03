@@ -25,14 +25,16 @@ time_day = 1;
 time_hour = 360;
 
 collision_grid = mp_grid_create(0,0,room_width/64,room_height/64,64,64);
-mp_grid_add_instances(collision_grid,obj_buildingobject,0);
+mp_grid_add_instances(collision_grid,obj_buildmodeobject,0);
 
 available_products = getAvailableProducts();
 
 shop_popularity = 0;
 
 guests_minimum = 1;
-guests_maximum = 3;
+guests_maximum = 2;
+
+queue_cashregister_highest = getHighestCashRehisterQueue();
 
 user_money = 500;
 

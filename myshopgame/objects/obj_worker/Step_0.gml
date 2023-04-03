@@ -30,15 +30,17 @@ if(worker_state == 0){
 		interaction_attempts = 0;
 	}else{
 		if(point_distance(x,y,target_x,target_y) < 10 || target_type == "NONE"){
-			var random_building_element = instance_find(obj_buildingobject,floor(random(instance_number(obj_buildingobject))));
-			var point_x = random_building_element.x + (floor(random(5))-2)*64;
-			var point_y = random_building_element.y + (floor(random(5))-2)*64;
-			while(instance_position(point_x,point_y,obj_buildingobject) != noone){
-				random_building_element = instance_find(obj_buildingobject,floor(random(instance_number(obj_buildingobject))));
-				point_x = random_building_element.x + (floor(random(5))-2)*64;
-				point_y = random_building_element.y + (floor(random(5))-2)*64;
+			if(instance_number(obj_buildmodeobject) > 0){
+				var random_building_element = instance_find(obj_buildmodeobject,floor(random(instance_number(obj_buildmodeobject))));
+				var point_x = random_building_element.x + (floor(random(5))-2)*64;
+				var point_y = random_building_element.y + (floor(random(5))-2)*64;
+				while(instance_position(point_x,point_y,obj_buildmodeobject) != noone){
+					random_building_element = instance_find(obj_buildmodeobject,floor(random(instance_number(obj_buildmodeobject))));
+					point_x = random_building_element.x + (floor(random(5))-2)*64;
+					point_y = random_building_element.y + (floor(random(5))-2)*64;
+				}
+				setPointPathfinding(point_x,point_y);
 			}
-			setPointPathfinding(point_x,point_y);
 		}
 	}
 }else if(worker_state == 1 && worker_ai_productstacking){

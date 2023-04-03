@@ -252,5 +252,23 @@
             "BOTTOM": "NONE",
             "RIGHT": "NONE"
         }
+    },
+    {
+        "NAME": "DOORMAT",
+        "OBJECT": "obj_decoration_floor",
+        "COST": 5,
+        "TAGS":[
+            "DECORATION"
+        ],
+        "ALTERNATIVE_SPRITE": "spr_doormat",
+        "CREATE_VARIABLES":{
+            "decoration_type": "DOORMAT"
+        },
+        "INTERACTION_POSITIONS":{
+            "TOP": "NONE",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
     }
 ]

@@ -52,9 +52,14 @@ if(ui_tabs_selected == "MONEY"){
 			buildmode_items_list = buildmode_items_tag == "ALL" ? buildings_list : findBuildingsWithTag(buildings_list,buildmode_items_tag);
 		}
 		
+		var max_items_width = max_width-60;
+		var max_items = floor(max_items_width/70);
+		
 		for(var i=0;i<ds_list_size(buildmode_items_list);i++){
 			var building = ds_list_find_value(buildmode_items_list, i);
-			if(gui_mouse_y >= max_height - 182 + 5 && gui_mouse_y <= max_height - 150 + 5 + 64 && gui_mouse_x >= 55 + (70*i) && gui_mouse_x <= 55 + (70*i) + 64){
+			var x_position = i%max_items;
+			var y_position = floor(i/max_items);
+			if(gui_mouse_y >= max_height - 182 + 5 + (70*y_position) && gui_mouse_y <= max_height - 150 + 5 + 64 + (70*y_position) && gui_mouse_x >= 55 + (70*x_position) && gui_mouse_x <= 55 + (70*x_position) + 64){
 				buildmode_object = buildmode_object == building ? undefined : building;
 			}
 		}
@@ -113,7 +118,7 @@ if(!action_cancelled){
 			var object = asset_get_index(buildmode_object[? "OBJECT"]);
 			var instance_x = floor(mouse_x/64)*64 + 32;
 			var instance_y = floor(mouse_y/64)*64 + 32;
-			var can_build = instance_position(instance_x,instance_y,obj_buildingobject) == noone ? true : false;
+			var can_build = instance_position(instance_x,instance_y,obj_buildmodeobject) == noone ? true : false;
 	
 			if(user_money >= cost && can_build){
 			
@@ -121,6 +126,15 @@ if(!action_cancelled){
 		
 				instance.direction = buildmode_direction;
 				instance.image_angle = buildmode_direction;
+				
+				if(ds_map_find_value(buildmode_object,"CREATE_VARIABLES") != undefined){
+					var map = buildmode_object[? "CREATE_VARIABLES"];
+					var map_key = ds_map_find_first(map);
+					while(map_key != undefined){
+						variable_instance_set(instance,map_key,map[? map_key]);
+						map_key = ds_map_find_next(map,map_key);	
+					}
+				}
 		
 				with(instance){
 					event_user(0);
@@ -131,7 +145,7 @@ if(!action_cancelled){
 				if(hasBuildingTag(buildmode_object, "PATHBLOCKING")){
 					mp_grid_destroy(collision_grid);
 					collision_grid = mp_grid_create(0,0,room_width/64,room_height/64,64,64);
-					mp_grid_add_instances(collision_grid,obj_buildingobject,0);
+					mp_grid_add_instances(collision_grid,obj_buildmodeobject,0);
 				}
 				
 				if(hasBuildingTag(buildmode_object, "SHELVE")){

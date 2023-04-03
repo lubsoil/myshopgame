@@ -8,6 +8,8 @@ if(time_hour < 1320){
 	for(var i=0; i<instance_number(obj_worker); i++){
 		removeMoney(obj_worker.worker_salary, "WORKER");
 	}
-	
 }
+
+queue_cashregister_highest = getHighestCashRehisterQueue();
+
 alarm[0] = 45;

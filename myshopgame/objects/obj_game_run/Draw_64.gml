@@ -1,12 +1,25 @@
 /// @description Rysowanie interfejsu
 
+if(debug_info_display){
+	draw_set_color(c_black);
+	
+	draw_text(0,0,"POPULARITY: " + string(shop_popularity));
+	draw_text(0,16,"MIN GUESTS: " + string(guests_minimum));
+	draw_text(0,32,"MAX GUESTS: " + string(guests_maximum));
+	//draw_text(0,48,"FPS: " + string(fps_real));
+}
+
 var max_width = display_get_gui_width();
 var max_height = display_get_gui_height();
 
 //RYSOWANIE POŁOZENIA BLOCZKU
 if(buildmode_object != undefined){
 	var object = asset_get_index(buildmode_object[? "OBJECT"]);
-	draw_sprite_ext(object_get_sprite(object),0,floor(mouse_x/64)*64+32 - camera_get_view_x(view_camera[0]),floor(mouse_y/64)*64+32 - camera_get_view_y(view_camera[0]),1,1,buildmode_direction,c_white,0.2);
+	var object_sprite = object_get_sprite(object);
+	if(ds_map_find_value(buildmode_object,"ALTERNATIVE_SPRITE") != undefined){
+		object_sprite = asset_get_index(buildmode_object[? "ALTERNATIVE_SPRITE"]);
+	}
+	draw_sprite_ext(object_sprite,0,floor(mouse_x/64)*64+32 - camera_get_view_x(view_camera[0]),floor(mouse_y/64)*64+32 - camera_get_view_y(view_camera[0]),1,1,buildmode_direction,c_white,0.2);
 	
 	var interaction_positions = buildmode_object[? "INTERACTION_POSITIONS"];
 	
@@ -222,6 +235,10 @@ if(ui_tabs_selected == "MONEY"){
 }else if(ui_tabs_selected == "OBJECTS"){
 	
 	var tab_start_y = max_height-150-32;
+	var tab_end_y = max_height-32;
+	
+	var tab_start_x = 0;
+	var tab_end_x = max_width;
 	
 	
 	draw_set_color(c_ltgrey);
@@ -259,12 +276,21 @@ if(ui_tabs_selected == "MONEY"){
 	draw_set_color(c_black);
 	draw_line(50,max_height-150-32,50,max_height-32);
 	
+	var max_items_width = max_width-60;
+	var max_items = floor(max_items_width/70);
+	
 	for(var i=0;i<ds_list_size(buildmode_items_list);i++){
+		var x_position = i%max_items;
+		var y_position = floor(i/max_items);
 		var building = ds_list_find_value(buildmode_items_list, i);
 		var cost = building[? "COST"];
 		var object = asset_get_index(building[? "OBJECT"]);
 		var sprite = object_get_sprite(object);
-		draw_sprite_ext(sprite,0,55 + (70*i) + 32,max_height-150 + 5,1,1,0,c_white,1);
+		
+		if(ds_map_find_value(building,"ALTERNATIVE_SPRITE") != undefined){
+			sprite = asset_get_index(building[? "ALTERNATIVE_SPRITE"]);
+		}
+		draw_sprite_ext(sprite,0,55 + (70*x_position) + 32,max_height-150 + 5 + (y_position*70),1,1,0,c_white,1);
 		draw_set_halign(fa_right);
 		draw_set_valign(fa_right);
 		draw_set_color(c_gray);
@@ -272,10 +298,10 @@ if(ui_tabs_selected == "MONEY"){
 		var box_text = string(cost)+"$";
 		var box_width = string_width(box_text);
 		var box_height = string_height(box_text);
-		draw_rectangle(55 + (70*i) + 64-box_width,max_height-150 + 32 + 5-box_height,55 + (70*i) + 64,max_height-150 + 32 + 5,false);
+		draw_rectangle(55 + (70*x_position) + 64-box_width,max_height-150 + 32 + 5-box_height + (y_position*70),55 + (70*x_position) + 64,max_height-150 + 32 + 5 + (y_position*70),false);
 		draw_set_alpha(1);
 		draw_set_color(c_black);
-		draw_text(55 + (70*i) + 64,max_height-150 + 32 + 5,box_text);
+		draw_text(55 + (70*x_position) + 64,max_height-150 + 32 + 5 + (y_position*70),box_text);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_left);
 	}
@@ -295,7 +321,7 @@ if(ui_tabs_selected == "MONEY"){
 		draw_set_valign(fa_left);
 		draw_set_color(c_black)
 		draw_text(tab_start_x+5,tab_start_y+5+50*i,worker.worker_name);
-		draw_text(tab_start_x+5,tab_start_y+5+16+50*i, "CR: "+ string(worker.skill_cashregister) + ",PS: " + string(worker.skill_productstacking)+",RP: " + string(worker.skill_repairing));
+		draw_text(tab_start_x+5,tab_start_y+5+16+50*i, "CR:"+ string(worker.skill_cashregister) + ",PS:" + string(worker.skill_productstacking)+",RP:" + string(worker.skill_repairing) + " "+string(worker.worker_salary)+"$/D");
 		
 		var worker_action_as_text = "Czeka na zadanie...";
 		if(worker.worker_state == 1){

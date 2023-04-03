@@ -12,7 +12,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "cashregister",
-    "path": "folders/Obiekty/buildingobjects/cashregister.yy",
+    "path": "folders/Obiekty/Buildmode Objects/cashregister.yy",
   },
   "parentObjectId": {
     "name": "obj_cashregister",
