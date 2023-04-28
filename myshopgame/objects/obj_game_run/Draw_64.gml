@@ -232,6 +232,34 @@ if(ui_tabs_selected == "MONEY"){
 	draw_set_color(c_ltgrey);
 	draw_rectangle(tab_start_x,tab_start_y,tab_end_x,tab_end_y,false);
 	
+	draw_set_color(c_black);
+	
+	var starting_value = ds_map_find_first(money_usage_now);
+	var text_y = tab_start_y + 5;
+	draw_set_valign(fa_left);
+	draw_set_halign(fa_left);
+	while(starting_value != undefined){
+		draw_text(5,text_y,starting_value + " " + string(money_usage_now[? starting_value]))
+		starting_value = ds_map_find_next(money_usage_now,starting_value);
+		text_y+=32;
+	}
+	
+	draw_text(tab_start_x+5,tab_end_y-50,"Marza sprzedazy:")
+	
+	for(var i=0;i<4;i++){
+		if(0.75 + i*0.25 == sales_margin){
+			draw_set_color(c_purple);
+		}else{
+			draw_set_color(c_white);
+		}
+		draw_rectangle(tab_start_x+5+(i*145),tab_end_y-30,tab_start_x+5+(i*145)+140,tab_end_y-5,false);
+		draw_set_color(c_black);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_center);
+		draw_text(tab_start_x + 5 + (i*145)+70,tab_end_y-5-12,string(75+i*25)+"%");
+	}
+	
+	
 }else if(ui_tabs_selected == "OBJECTS"){
 	
 	var tab_start_y = max_height-150-32;

@@ -18,8 +18,19 @@ if(time_hour >= 510 && time_hour <= 869){
 
 popularity *= time_multiplier;
 
+var margin_popularity = 1;
+if(sales_margin == 0.75){
+	margin_popularity = 1.5;
+}else if(sales_margin == 1.25){
+	margin_popularity = 0.75;
+}else if(sales_margin == 1.5){
+	margin_popularity = 0.5;
+}
+
+popularity *= margin_popularity;
+
 
 
 shop_popularity = popularity;
-guests_minimum = 1 + floor(0.34*shop_popularity);
-guests_maximum = 2 + floor(0.69*shop_popularity);
+guests_minimum = 1 + floor(0.1*shop_popularity);
+guests_maximum = 1 + floor(0.4*shop_popularity);

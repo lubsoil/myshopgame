@@ -15,7 +15,7 @@ while(loop_item != undefined){
 }
 
 if(obj_game_run.user_money >= total_restock_cost){
-	removeMoney(total_restock_cost,"RESTOCK");
+	removeMoney(total_restock_cost,"PRODUCT");
 	product_stock_empty = false;
 	restock_worker = noone;
 	ds_map_copy(product_stock,product_stock_default);

@@ -25,6 +25,22 @@ if(gui_mouse_y >= max_height-32 && gui_mouse_y <= max_height && gui_mouse_x >=0 
 	}
 }
 if(ui_tabs_selected == "MONEY"){
+	var tab_start_y = max_height-500-32;
+	var tab_end_y = max_height-32;
+	
+	var tab_start_x = 0;
+	var tab_end_x = 600;
+	if(gui_mouse_y >= tab_start_y && gui_mouse_y <= tab_end_y && gui_mouse_x >=tab_start_x && gui_mouse_x <= tab_end_x){
+		action_cancelled = true;
+		
+		for(var i=0;i<4;i++)
+		{
+			if(gui_mouse_y >= tab_end_y-30 && gui_mouse_y <= tab_end_y-5 && gui_mouse_x >= tab_start_x + 5 + 145*i && gui_mouse_x <= tab_start_x + 5 + 145*i + 140){
+				sales_margin = 0.75+0.25*i
+			}
+		}
+		
+	}
 	
 }else if(ui_tabs_selected == "OBJECTS"){
 	if(gui_mouse_y >= max_height-32-150 && gui_mouse_y <= max_height-32 && gui_mouse_x >=0 && gui_mouse_x <= max_width){
@@ -104,7 +120,7 @@ if(ui_tabs_selected == "MONEY"){
 			if(user_money >= 50 && instance_number(obj_entrance) > 0){
 				var entrance = instance_find(obj_entrance,floor(random(instance_number(obj_entrance))));
 				instance_create_layer(entrance.x,entrance.y,"Instances",obj_worker);
-				user_money -=50;
+				removeMoney(50,"WORKER")
 			}
 		}
 	}

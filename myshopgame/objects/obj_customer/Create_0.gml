@@ -207,7 +207,7 @@ function tryFindWorkingATMMachine(){
 function sellAllProducts(){
 	for(var i=0;i<ds_list_size(cart_list);i++){
 		var product_name = ds_list_find_value(cart_list, i);
-		addMoney(getProductCost(product_name),"PRODUCTSELL");
+		addMoney(round(getProductCost(product_name)*obj_game_run.sales_margin),"PRODUCT");
 	}
 	ds_list_clear(cart_list);
 }

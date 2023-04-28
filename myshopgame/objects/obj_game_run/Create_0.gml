@@ -34,7 +34,14 @@ shop_popularity = 0;
 guests_minimum = 1;
 guests_maximum = 2;
 
+sales_margin = 1.0;
+
 queue_cashregister_highest = getHighestCashRehisterQueue();
+
+money_usage_history = ds_list_create();
+money_usage_now = ds_map_create();
+ds_list_add(money_usage_history,money_usage_now);
+ds_list_mark_as_map(money_usage_history,ds_list_size(money_usage_history)-1);
 
 user_money = 500;
 
