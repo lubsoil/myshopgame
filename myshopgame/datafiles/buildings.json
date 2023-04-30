@@ -272,6 +272,23 @@
         }
     },
     {
+        "NAME": "BIGSHOPPINGCART",
+        "OBJECT": "obj_bigshoppingcart",
+        "COST": 200,
+        "TAGS":[
+            "SHOPPINGCART",
+            "SPECIAL",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
+    },
+    {
         "NAME": "ATMMACHINE",
         "OBJECT": "obj_atmmachine",
         "COST": 250,
