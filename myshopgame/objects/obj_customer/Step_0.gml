@@ -3,17 +3,24 @@ if(customer_state == 0){
 	if(atmmachine_need == true && atmmachine_used == false){
 		customer_state = 4;
 		interaction_attempts = 0;
+	}else if(shoppingcart_used == false && ds_list_size(shopping_list) > 2){
+		customer_state = 5;
+		interaction_attempts = 0;
 	}else if(ds_list_size(shopping_list) > 0){
 		customer_state = 1;	
+		interaction_time = 120;
 	}else if(ds_list_size(cart_list) > 0){
 		customer_state = 2;	
+	}else if(shoppingcart_used && cart_type != undefined){
+		customer_state = 6;	
+		interaction_attempts = 0;
 	}else{
 		customer_state = 3;	
 	}
 	resetPathfinding();
 }else if(customer_state == 1){
 	//GETTING PRODUCTS STAGE
-	if(ds_list_size(shopping_list) > 0){
+	if(ds_list_size(shopping_list) > 0 && ds_list_size(cart_list) < 2+cart_maximum){
 		if(isTargetValid()){
 			var product_name = ds_list_find_value(shopping_list,current_product);
 			var shelf_amount = target_object.product_stock[? product_name];
@@ -72,8 +79,12 @@ if(customer_state == 0){
 		if(ds_list_size(cart_list) > 0){
 			customer_state = 2;
 			interaction_time = undefined;	
+			if(ds_list_size(shopping_list) > 0)
+			{
+				ds_list_clear(shopping_list)	;
+			}
 		}else{
-			customer_state = 3;
+			customer_state = 0;
 			interaction_time = 20;	
 		}
 		alarm_set(0, 2);
@@ -123,8 +134,8 @@ if(customer_state == 0){
 							}
 							if(ds_list_size(cart_list) <= 0){
 								
-								customer_state = 3;
-								interaction_time = 20;
+								customer_state = 0;
+								
 								target_object = noone;
 								target_x = -100;
 								target_y = -100;
@@ -158,6 +169,7 @@ if(customer_state == 0){
 		}
 	}else{
 		setObjectPathfinding(instance_nearest(x,y,obj_entrance));
+		interaction_time = 20;
 	}
 }else if(customer_state == 4){
 	if(atmmachine_used == false){
@@ -201,6 +213,88 @@ if(customer_state == 0){
 			if(isTargetValid() == false){
 				if(interaction_attempts > 100){
 					atmmachine_used = true;
+					interaction_attempts = 0;
+					customer_state = 0;
+					resetPathfinding();
+				}else{
+					interaction_attempts++;
+				}
+			}
+			
+		}
+	}else{
+		customer_state = 0;
+		resetPathfinding();
+	}
+}else if(customer_state == 5){
+	if(shoppingcart_used == false){
+		if(isTargetValid()){
+			if(target_object.shoppingcart_amount > 0){
+				if(point_distance(x,y,target_x,target_y) < 10){
+					if(interaction_time > 0){
+						texture_rotation = point_direction(x,y,target_object.x,target_object.y);
+						interaction_time--;
+					}else{
+						shoppingcart_used = true;
+						target_object.shoppingcart_amount -=1;
+						cart_maximum = target_object.shoppingcart_size;
+						cart_type = target_object.shoppingcart_type;
+
+						customer_state = 0;
+						resetPathfinding();
+					}
+				}
+			}else{
+				resetPathfinding();	
+			}
+			
+		}else{
+			setObjectPathfinding(tryFindNotEmptyShoppingCart());
+			interaction_time = 60;
+			if(isTargetValid() == false){
+				if(interaction_attempts > 100){
+					shoppingcart_used = true;
+					interaction_attempts = 0;
+					customer_state = 0;
+					resetPathfinding();
+				}else{
+					interaction_attempts++;
+				}
+			}
+			
+		}
+	}else{
+		customer_state = 0;
+		resetPathfinding();
+	}
+}else if(customer_state == 6){
+	if(shoppingcart_used == true && cart_type != undefined){
+		if(isTargetValid()){
+			if(target_object.shoppingcart_amount < target_object.shoppingcart_maximum && cart_type == target_object.shoppingcart_type){
+				if(point_distance(x,y,target_x,target_y) < 10){
+					if(interaction_time > 0){
+						texture_rotation = point_direction(x,y,target_object.x,target_object.y);
+						interaction_time--;
+					}else{
+						shoppingcart_used = true;
+						target_object.shoppingcart_amount +=1;
+						cart_maximum = 0;
+						cart_type = undefined;
+
+						customer_state = 0;
+						resetPathfinding();
+					}
+				}
+			}else{
+				resetPathfinding();	
+			}
+			
+		}else{
+			setObjectPathfinding(tryFindNotFullShoppingCart(cart_type));
+			interaction_time = 60;
+			if(isTargetValid() == false){
+				if(interaction_attempts > 100){
+					//ADD HERE CODE TO DROP SHOPPING BASKET
 					interaction_attempts = 0;
 					customer_state = 0;
 					resetPathfinding();

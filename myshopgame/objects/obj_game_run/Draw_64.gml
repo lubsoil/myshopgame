@@ -234,16 +234,61 @@ if(ui_tabs_selected == "MONEY"){
 	
 	draw_set_color(c_black);
 	
-	var starting_value = ds_map_find_first(money_usage_now);
-	var text_y = tab_start_y + 5;
 	draw_set_valign(fa_left);
-	draw_set_halign(fa_left);
-	while(starting_value != undefined){
-		draw_text(5,text_y,starting_value + " " + string(money_usage_now[? starting_value]))
-		starting_value = ds_map_find_next(money_usage_now,starting_value);
-		text_y+=32;
+	draw_set_halign(fa_center);
+	
+	draw_text((120*0)+60,tab_start_y+5,string("Kategoria"))
+	draw_text((120*0)+60,tab_start_y+5+25*1,string("Produkty"))
+	draw_text((120*0)+60,tab_start_y+5+25*2,string("Pracownicy"))
+	draw_text((120*0)+60,tab_start_y+5+25*3,string("Budowanie"))
+	draw_text((120*0)+60,tab_start_y+5+25*4,string("Zadania"))
+	draw_text((120*0)+60,tab_start_y+5+25*5,string("Inne"))
+	draw_text((120*0)+60,tab_start_y+5+25*6,string("Lacznie"))
+	
+	draw_text((120*1)+60,tab_start_y+5,string("Dzien " + string(time_day)));
+	var current_data_set = ds_list_find_value(money_usage_history,ds_list_size(money_usage_history)-1);
+	draw_text((120*1)+60,tab_start_y+5+25*1,string(current_data_set[? "PRODUCT"] == undefined ? 0 : current_data_set[? "PRODUCT"])+"$")
+	draw_text((120*1)+60,tab_start_y+5+25*2,string(current_data_set[? "WORKER"] == undefined ? 0 : current_data_set[? "WORKER"])+"$")
+	draw_text((120*1)+60,tab_start_y+5+25*3,string(current_data_set[? "BUILDMODE"] == undefined ? 0 : current_data_set[? "BUILDMODE"])+"$")
+	draw_text((120*1)+60,tab_start_y+5+25*4,string(current_data_set[? "QUEST"] == undefined ? 0 : current_data_set[? "QUEST"])+"$")
+	draw_text((120*1)+60,tab_start_y+5+25*5,string(current_data_set[? "OTHER"] == undefined ? 0 : current_data_set[? "OTHER"])+"$")
+	draw_text((120*1)+60,tab_start_y+5+25*6,string(current_data_set[? "TOTAL"] == undefined ? 0 : current_data_set[? "TOTAL"])+"$")
+	
+	if(ds_list_size(money_usage_history)>1){
+		draw_text((120*2)+60,tab_start_y+5,string("Dzien " + string(time_day-1)))
+		var current_data_set = ds_list_find_value(money_usage_history,ds_list_size(money_usage_history)-2);
+		draw_text((120*2)+60,tab_start_y+5+25*1,string(current_data_set[? "PRODUCT"] == undefined ? 0 : current_data_set[? "PRODUCT"])+"$")
+		draw_text((120*2)+60,tab_start_y+5+25*2,string(current_data_set[? "WORKER"] == undefined ? 0 : current_data_set[? "WORKER"])+"$")
+		draw_text((120*2)+60,tab_start_y+5+25*3,string(current_data_set[? "BUILDMODE"] == undefined ? 0 : current_data_set[? "BUILDMODE"])+"$")
+		draw_text((120*2)+60,tab_start_y+5+25*4,string(current_data_set[? "QUEST"] == undefined ? 0 : current_data_set[? "QUEST"])+"$")
+		draw_text((120*2)+60,tab_start_y+5+25*5,string(current_data_set[? "OTHER"] == undefined ? 0 : current_data_set[? "OTHER"])+"$")
+		draw_text((120*2)+60,tab_start_y+5+25*6,string(current_data_set[? "TOTAL"] == undefined ? 0 : current_data_set[? "TOTAL"])+"$")
+	}
+	if(ds_list_size(money_usage_history)>2){
+		draw_text((120*3)+60,tab_start_y+5,string("Dzien " + string(time_day-2)))
+		var current_data_set = ds_list_find_value(money_usage_history,ds_list_size(money_usage_history)-3);
+		draw_text((120*3)+60,tab_start_y+5+25*1,string(current_data_set[? "PRODUCT"] == undefined ? 0 : current_data_set[? "PRODUCT"])+"$")
+		draw_text((120*3)+60,tab_start_y+5+25*2,string(current_data_set[? "WORKER"] == undefined ? 0 : current_data_set[? "WORKER"])+"$")
+		draw_text((120*3)+60,tab_start_y+5+25*3,string(current_data_set[? "BUILDMODE"] == undefined ? 0 : current_data_set[? "BUILDMODE"])+"$")
+		draw_text((120*3)+60,tab_start_y+5+25*4,string(current_data_set[? "QUEST"] == undefined ? 0 : current_data_set[? "QUEST"])+"$")
+		draw_text((120*3)+60,tab_start_y+5+25*5,string(current_data_set[? "OTHER"] == undefined ? 0 : current_data_set[? "OTHER"])+"$")
+		draw_text((120*3)+60,tab_start_y+5+25*6,string(current_data_set[? "TOTAL"] == undefined ? 0 : current_data_set[? "TOTAL"])+"$")
+	}
+	if(ds_list_size(money_usage_history)>3){
+		draw_text((120*4)+60,tab_start_y+5,string("Dzien " + string(time_day-3)))
+		var current_data_set = ds_list_find_value(money_usage_history,ds_list_size(money_usage_history)-4);
+		draw_text((120*4)+60,tab_start_y+5+25*1,string(current_data_set[? "PRODUCT"] == undefined ? 0 : current_data_set[? "PRODUCT"])+"$")
+		draw_text((120*4)+60,tab_start_y+5+25*2,string(current_data_set[? "WORKER"] == undefined ? 0 : current_data_set[? "WORKER"])+"$")
+		draw_text((120*4)+60,tab_start_y+5+25*3,string(current_data_set[? "BUILDMODE"] == undefined ? 0 : current_data_set[? "BUILDMODE"])+"$")
+		draw_text((120*4)+60,tab_start_y+5+25*4,string(current_data_set[? "QUEST"] == undefined ? 0 : current_data_set[? "QUEST"])+"$")
+		draw_text((120*4)+60,tab_start_y+5+25*5,string(current_data_set[? "OTHER"] == undefined ? 0 : current_data_set[? "OTHER"])+"$")
+		draw_text((120*4)+60,tab_start_y+5+25*6,string(current_data_set[? "TOTAL"] == undefined ? 0 : current_data_set[? "TOTAL"])+"$")
 	}
 	
+	//MARŻA SPRZEDAŻY
+	
+	draw_set_valign(fa_left);
+	draw_set_halign(fa_left);
 	draw_text(tab_start_x+5,tab_end_y-50,"Marza sprzedazy:")
 	
 	for(var i=0;i<4;i++){
@@ -252,11 +297,11 @@ if(ui_tabs_selected == "MONEY"){
 		}else{
 			draw_set_color(c_white);
 		}
-		draw_rectangle(tab_start_x+5+(i*145),tab_end_y-30,tab_start_x+5+(i*145)+140,tab_end_y-5,false);
+		draw_rectangle(tab_start_x+4+(i*149),tab_end_y-30,tab_start_x+4+(i*149)+145,tab_end_y-5,false);
 		draw_set_color(c_black);
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_center);
-		draw_text(tab_start_x + 5 + (i*145)+70,tab_end_y-5-12,string(75+i*25)+"%");
+		draw_text(tab_start_x + 4 + (i*149)+72,tab_end_y-5-12,string(75+i*25)+"%");
 	}
 	
 	
@@ -396,6 +441,54 @@ if(ui_tabs_selected == "MONEY"){
 	draw_set_valign(fa_center);
 	draw_text(tab_start_x + ((tab_end_x-tab_start_x)/2),tab_end_y-5-12,"Zatrudnij pracownika (50$)");
 	
+}else if(ui_tabs_selected == "QUESTS"){
+	var tab_start_y = max_height-500-32;
+	var tab_end_y = max_height-32;
+	
+	var tab_start_x = 0;
+	var tab_end_x = 600;
+	
+	draw_set_color(c_ltgrey);
+	draw_rectangle(tab_start_x,tab_start_y,tab_end_x,tab_end_y,false);
+	
+	
+	var starting_y_point = tab_start_y + 5;
+	for(var i=0;i<ds_list_size(quests_list);i++)
+	{
+		var current_quests = ds_list_find_value(quests_list,i);
+		var current_quests_name = current_quests[? "NAME"];
+		var quest_progress = 0;
+		
+		var current_quests_text = current_quests_name;
+		if(current_quests_name == "START_BASICOBJECTS"){
+			var current_quests_progress = current_quests[? "PROGRESS"];
+			if(current_quests_progress[? "SHELVE"] == true){
+				quest_progress++;
+			}
+			if(current_quests_progress[? "CASHREGISTER"] == true){
+				quest_progress++;
+			}
+			current_quests_text = "Postaw polke oraz kase sklepowa (%PROGRESS%/2)\nNagroda: 25$";
+		}else if(current_quests_name == "EARN_MONEY"){
+			quest_progress = current_quests[? "PROGRESS"];
+			var current_quests_progress_required = current_quests[? "PROGRESS_REQUIRED"];
+			current_quests_text = "Zarob %MAXPROGRESS% Pieniedzy (%PROGRESS%/%MAXPROGRESS%)\nNagroda: "+string(round(current_quests_progress_required*0.1))+"$";
+			current_quests_text = string_replace_all(current_quests_text,"%MAXPROGRESS%",string(current_quests_progress_required))
+		}
+		current_quests_text = string_replace(current_quests_text,"%PROGRESS%",string(quest_progress))
+		
+		draw_set_valign(fa_left);
+		draw_set_halign(fa_left);
+		draw_set_color(c_black);
+		if(current_quests[? "COMPLETED"] == true)
+		{
+			draw_set_color(c_green);
+		}
+		
+		draw_text_ext(5,starting_y_point,current_quests_text,20,580);
+		
+		starting_y_point += string_height_ext(current_quests_text,20,580);	
+	}
 }
 
 draw_set_color(c_white);

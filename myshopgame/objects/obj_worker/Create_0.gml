@@ -127,7 +127,7 @@ function gainSkillProgress(type){
 		break;
 	}
 	
-	worker_salary = 25 + skill_productstacking*5 + skill_cashregister_progress*5 + skill_repairing_progress*5
+	worker_salary = 25 + skill_productstacking*3 + skill_cashregister*3 + skill_repairing*3
 }
 
 

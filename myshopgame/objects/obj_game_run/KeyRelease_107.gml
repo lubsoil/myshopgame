@@ -1,2 +1,2 @@
 /// @description Wstaw opis w tym miejscu
-user_money += 500;
+addMoney(500,"OTHER");

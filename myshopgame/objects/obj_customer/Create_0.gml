@@ -15,6 +15,8 @@ customer_state = 0;
 	2 - USING CASH REGISTER
 	3 - EXITING SHOP
 	4 - USING ATM
+	5 - GETTING SHOPPING CART
+	6 - RETURNING SHOPPING CART
 */
 
 shopping_list = ds_list_create(); // LISTA CO KLIENT CHCE KUPIĆ
@@ -30,11 +32,15 @@ for(var i=0;i< ceil(random(4));i++){
 }
 
 cart_list = ds_list_create(); //LISTA ZDOBYTYCH PRODUKTÓW
+cart_type = undefined;
+cart_maximum = 0;
 
 current_product = floor(random(ds_list_size(shopping_list)));
 
 atmmachine_need = floor(random(5)) == 0 ? true : false;
 atmmachine_used = false;
+
+shoppingcart_used = false;
 
 interaction_attempts = 0;
 interaction_time = 120;
@@ -187,6 +193,30 @@ function tryFindWorkingCashRegister(){
 		var cashregister = instance_find(obj_cashregister, floor(random(amount_cashregister)));
 		if(cashregister.cashregister_available == true){
 			return cashregister;
+		}
+	}
+	return noone;
+}
+
+function tryFindNotEmptyShoppingCart(){
+	var amount_shoppingcart = instance_number(obj_shoppingcart);
+		
+	if(amount_shoppingcart > 0){
+		var shoppingcart = instance_find(obj_shoppingcart, floor(random(amount_shoppingcart)));
+		if(shoppingcart.shoppingcart_amount > 0){
+			return shoppingcart;
+		}
+	}
+	return noone;
+}
+
+function tryFindNotFullShoppingCart(type){
+	var amount_shoppingcart = instance_number(obj_shoppingcart);
+		
+	if(amount_shoppingcart > 0){
+		var shoppingcart = instance_find(obj_shoppingcart, floor(random(amount_shoppingcart)));
+		if(shoppingcart.shoppingcart_amount < shoppingcart.shoppingcart_maximum && shoppingcart.shoppingcart_type == type){
+			return shoppingcart;
 		}
 	}
 	return noone;

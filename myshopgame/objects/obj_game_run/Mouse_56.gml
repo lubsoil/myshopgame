@@ -35,7 +35,7 @@ if(ui_tabs_selected == "MONEY"){
 		
 		for(var i=0;i<4;i++)
 		{
-			if(gui_mouse_y >= tab_end_y-30 && gui_mouse_y <= tab_end_y-5 && gui_mouse_x >= tab_start_x + 5 + 145*i && gui_mouse_x <= tab_start_x + 5 + 145*i + 140){
+			if(gui_mouse_y >= tab_end_y-30 && gui_mouse_y <= tab_end_y-5 && gui_mouse_x >= tab_start_x + 4 + 149*i && gui_mouse_x <= tab_start_x + 4 + 149*i + 145){
 				sales_margin = 0.75+0.25*i
 			}
 		}
@@ -166,6 +166,40 @@ if(!action_cancelled){
 				
 				if(hasBuildingTag(buildmode_object, "SHELVE")){
 					available_products = getAvailableProducts(available_products);
+				}
+				
+				//QUESTS ACTIONS
+				for(var i=0;i<ds_list_size(quests_list);i++)
+				{
+					var current_quests = ds_list_find_value(quests_list,i);
+					
+					var current_quests_completed = current_quests[? "COMPLETED"];
+		
+					if(current_quests_completed == false){
+						var current_quests_name = current_quests[? "NAME"];
+						var current_quests_progress = current_quests[? "PROGRESS"];
+					
+						if(current_quests_name == "START_BASICOBJECTS"){
+							//DODAWANIE WARUNKÓW
+							if(current_quests_progress[? "SHELVE"] == false){
+								if(hasBuildingTag(buildmode_object, "SHELVE")){
+									current_quests_progress[? "SHELVE"] = true;
+								}
+							}
+							if(current_quests_progress[? "CASHREGISTER"] == false){
+								if(hasBuildingTag(buildmode_object, "CASHREGISTER")){
+									current_quests_progress[? "CASHREGISTER"] = true;
+								}
+							}
+							//WYKONANIE QUESTA
+							if(current_quests_progress[? "CASHREGISTER"] && current_quests_progress[? "SHELVE"]){
+								current_quests[? "COMPLETED"] = true;
+								addMoney(25,"QUEST");
+							}
+							
+						}
+					}
+
 				}
 				
 			}

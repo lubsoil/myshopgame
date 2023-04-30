@@ -8,6 +8,12 @@ var popularity = 0;
 
 popularity += (instance_number(obj_cashregister) * 2.25)/(queue_cashregister_highest != 0 ? queue_cashregister_highest : 1);
 popularity += (instance_number(obj_shelf) * ceil(ds_list_size(available_products)/2.5)) * (instance_number(obj_atmmachine) > 0 ? 2.5 : 1)
+for(var i=0;i<instance_number(obj_decoration_floor);i++)
+{
+	var obj =  instance_find(obj_decoration_floor,i);
+	popularity += obj.decoration_value;
+}
+
 
 var time_multiplier = 1.0;
 if(time_hour >= 510 && time_hour <= 869){

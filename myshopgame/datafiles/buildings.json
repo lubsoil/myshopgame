@@ -238,6 +238,40 @@
         }
     },
     {
+        "NAME": "SMALLSHOPPINGCART",
+        "OBJECT": "obj_smallshoppingcart",
+        "COST": 60,
+        "TAGS":[
+            "SHOPPINGCART",
+            "SPECIAL",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
+    },
+    {
+        "NAME": "MEDIUMSHOPPINGCART",
+        "OBJECT": "obj_mediumshoppingcart",
+        "COST": 120,
+        "TAGS":[
+            "SHOPPINGCART",
+            "SPECIAL",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
+    },
+    {
         "NAME": "ATMMACHINE",
         "OBJECT": "obj_atmmachine",
         "COST": 250,
