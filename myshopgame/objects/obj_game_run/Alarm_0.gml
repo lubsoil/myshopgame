@@ -14,11 +14,19 @@ if(time_hour < 1320){
 	ds_list_mark_as_map(money_usage_history,ds_list_size(money_usage_history)-1);
 	
 	//DODAWANIE QUESA CO DZIEŃ
+	var quest_random = floor(random(2));
 	var start_game_quest = ds_map_create();
-	ds_map_add(start_game_quest,"NAME","EARN_MONEY");
-	ds_map_add(start_game_quest,"PROGRESS",0);
-	ds_map_add(start_game_quest,"PROGRESS_REQUIRED",500);
-	ds_map_add(start_game_quest,"COMPLETED", false);
+	if(quest_random == 0){
+		ds_map_add(start_game_quest,"NAME","EARN_MONEY");
+		ds_map_add(start_game_quest,"PROGRESS",0);
+		ds_map_add(start_game_quest,"PROGRESS_REQUIRED",500);
+		ds_map_add(start_game_quest,"COMPLETED", false);
+	}else{
+		ds_map_add(start_game_quest,"NAME","SELL_PRODUCTS");
+		ds_map_add(start_game_quest,"PROGRESS",0);
+		ds_map_add(start_game_quest,"PROGRESS_REQUIRED",50);
+		ds_map_add(start_game_quest,"COMPLETED", false);
+	}
 
 	ds_list_add(quests_list,start_game_quest);
 	ds_list_mark_as_map(quests_list,ds_list_size(quests_list)-1);

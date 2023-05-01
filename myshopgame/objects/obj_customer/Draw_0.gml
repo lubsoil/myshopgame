@@ -1,5 +1,4 @@
 /// @description PERSON DRAWING
-
 draw_sprite_ext(spr_human_top_000,image_index,x,y,image_xscale,image_yscale,0,appearance_top,1);
 draw_sprite_ext(spr_human_bottom_000,image_index,x,y,image_xscale,image_yscale,0,appearance_bottom,1);
 if(appearance_head == 0){

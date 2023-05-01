@@ -93,18 +93,23 @@ if(ui_tabs_selected == "MONEY"){
 		for(var i=0;i<instance_number(obj_worker) > 0;i++){
 			var worker = instance_find(obj_worker,i);
 			
-			if(gui_mouse_y >= tab_start_y+5+50*i && gui_mouse_y <= tab_start_y+30+50*i  && gui_mouse_x >= tab_end_x-5-30*3-25 && gui_mouse_x <= tab_end_x-5-30*3){
+			if(gui_mouse_y >= tab_start_y+5+50*i && gui_mouse_y <= tab_start_y+30+50*i  && gui_mouse_x >= tab_end_x-5-30*4-25 && gui_mouse_x <= tab_end_x-5-30*4){
 				worker.worker_ai_cashregister = not worker.worker_ai_cashregister
 				i=10000;
 			}
 			
-			if(gui_mouse_y >= tab_start_y+5+50*i && gui_mouse_y <= tab_start_y+30+50*i  && gui_mouse_x >= tab_end_x-5-30*2-25 && gui_mouse_x <= tab_end_x-5-30*2){
+			if(gui_mouse_y >= tab_start_y+5+50*i && gui_mouse_y <= tab_start_y+30+50*i  && gui_mouse_x >= tab_end_x-5-30*3-25 && gui_mouse_x <= tab_end_x-5-30*3){
 				worker.worker_ai_productstacking = not worker.worker_ai_productstacking
 				i=10000;
 			}
 			
-			if(gui_mouse_y >= tab_start_y+5+50*i && gui_mouse_y <= tab_start_y+30+50*i  && gui_mouse_x >= tab_end_x-5-30*1-25 && gui_mouse_x <= tab_end_x-5-30*1){
+			if(gui_mouse_y >= tab_start_y+5+50*i && gui_mouse_y <= tab_start_y+30+50*i  && gui_mouse_x >= tab_end_x-5-30*2-25 && gui_mouse_x <= tab_end_x-5-30*2){
 				worker.worker_ai_repairing = not worker.worker_ai_repairing
+				i=10000;
+			}
+			
+			if(gui_mouse_y >= tab_start_y+5+50*i && gui_mouse_y <= tab_start_y+30+50*i  && gui_mouse_x >= tab_end_x-5-30*1-25 && gui_mouse_x <= tab_end_x-5-30*1){
+				worker.worker_ai_cleaning = not worker.worker_ai_cleaning
 				i=10000;
 			}
 			

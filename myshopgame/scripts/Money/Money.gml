@@ -30,6 +30,7 @@ function addMoney(amount,type){
 				current_quests[? "PROGRESS"] += amount;
 				//WYKONANIE QUESTA
 				if(current_quests[? "PROGRESS"] >= current_quests_progress_required){
+					current_quests[? "PROGRESS"] = current_quests_progress_required;
 					current_quests[? "COMPLETED"] = true;
 					addMoney(round(0.1*current_quests_progress_required),"QUEST");
 				}

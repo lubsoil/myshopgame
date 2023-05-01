@@ -12,8 +12,18 @@ if(customer_state == 0){
 	}else if(ds_list_size(cart_list) > 0){
 		customer_state = 2;	
 	}else if(shoppingcart_used && cart_type != undefined){
-		customer_state = 6;	
-		interaction_attempts = 0;
+		if(shoppingcart_randomdrop == true)
+		{
+			var trash = instance_create_layer(x,y,"Instances",obj_trash_shoppingcart);
+			trash.shoppingcart_type = cart_type;
+			cart_type = undefined;
+			cart_maximum = 0;
+		}
+		else
+		{
+			customer_state = 6;	
+			interaction_attempts = 0;
+		}
 	}else{
 		customer_state = 3;	
 	}
@@ -294,7 +304,10 @@ if(customer_state == 0){
 			interaction_time = 60;
 			if(isTargetValid() == false){
 				if(interaction_attempts > 100){
-					//ADD HERE CODE TO DROP SHOPPING BASKET
+					var trash = instance_create_layer(x,y,"Instances",obj_trash_shoppingcart);
+					trash.shoppingcart_type = cart_type;
+					cart_type = undefined;
+					cart_maximum = 0;
 					interaction_attempts = 0;
 					customer_state = 0;
 					resetPathfinding();

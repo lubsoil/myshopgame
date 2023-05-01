@@ -4,6 +4,7 @@ if(worker_state == 0){
 	var broken_selfcashregister = tryFindBrokenSelfCashRegister();
 	var free_workercashregister = tryFindFreeWorkerCashRegister();
 	var broken_atmmachine = tryFindBrokenATMMachine();
+	var trash_shoppingcart = tryFindShoppingCartTrash();
 	
 	if(free_workercashregister != noone && worker_ai_cashregister){
 		worker_state = 3;
@@ -27,6 +28,12 @@ if(worker_state == 0){
 		setObjectPathfinding(broken_atmmachine);
 		target_object.repair_worker = self;
 		interaction_time = 360 - skill_repairing*60;
+		interaction_attempts = 0;
+	}else if(trash_shoppingcart != noone && worker_ai_cleaning){
+		worker_state = 5;
+		setObjectPathfinding(trash_shoppingcart);
+		target_object.trash_worker = self;
+		interaction_time = 120 - skill_cleaning*20;
 		interaction_attempts = 0;
 	}else{
 		if(point_distance(x,y,target_x,target_y) < 10 || target_type == "NONE"){
@@ -181,6 +188,74 @@ if(worker_state == 0){
 		}
 		interaction_time = 360 - skill_repairing*60;
 	}
+}else if(worker_state == 5 && worker_ai_cleaning){
+	if(shoppingcart_type != undefined)
+	{
+		//ODKŁADANIE KOSZYKA
+		if(isTargetValid()){
+			if(target_object.shoppingcart_amount < target_object.shoppingcart_maximum){
+				if(interaction_time > 0){
+					if(point_distance(x,y,target_x,target_y) < 10){
+						texture_rotation = point_direction(x,y,target_object.x,target_object.y);
+						interaction_time--;
+					}
+				}else{
+					target_object.shoppingcart_amount++;
+					shoppingcart_type = undefined;
+					worker_state = 0;
+					resetPathfinding();
+				}
+			}
+		}else{
+			setObjectPathfinding(tryFindNotFullShoppingCart(shoppingcart_type));
+			if(target_object == noone){
+				if(interaction_attempts > 100){
+					resetPathfinding();
+					worker_state = 0;
+					interaction_attempts = 0;
+					shoppingcart_type = undefined;
+					worker_state = 0;
+				}else{
+					interaction_attempts++;
+				}	
+			}
+			interaction_time = 60 - skill_cleaning*10;
+		}
+	}
+	else
+	{
+		//PODNOSZENIE KOSZYKA
+		if(isTargetValid()){
+			if(interaction_time > 0){
+				if(point_distance(x,y,target_x,target_y) < 10){
+					texture_rotation = point_direction(x,y,target_object.x,target_object.y);
+					interaction_time--;
+				}
+			}else{
+				shoppingcart_type = target_object.shoppingcart_type;
+				gainSkillProgress("CLEANING");
+				with(target_object)
+				{
+					instance_destroy();
+				}
+				resetPathfinding();
+			}
+		}else{
+			setObjectPathfinding(tryFindNotEmptyShoppingCart());
+			if(target_object != noone){
+				target_object.repair_worker = self;
+			}else{
+				if(interaction_attempts > 100){
+					resetPathfinding();
+					worker_state = 0;
+					interaction_attempts = 0;
+				}else{
+					interaction_attempts++;
+				}	
+			}
+			interaction_time = 60 - skill_cleaning*10;
+		}
+	}
 }else{
 	if(isTargetValid()){
 		if(worker_state == 1){
@@ -192,6 +267,9 @@ if(worker_state == 0){
 			target_object.cashregister_available = false;
 		}else if(worker_state == 4){
 			target_object.repair_worker = noone;
+		}else if(worker_state == 5){
+			target_object.trash_worker = noone;
+			shoppingcart_type = undefined;
 		}
 	}
 	resetPathfinding();

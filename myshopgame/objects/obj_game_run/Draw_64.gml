@@ -394,7 +394,7 @@ if(ui_tabs_selected == "MONEY"){
 		draw_set_valign(fa_left);
 		draw_set_color(c_black)
 		draw_text(tab_start_x+5,tab_start_y+5+50*i,worker.worker_name);
-		draw_text(tab_start_x+5,tab_start_y+5+16+50*i, "CR:"+ string(worker.skill_cashregister) + ",PS:" + string(worker.skill_productstacking)+",RP:" + string(worker.skill_repairing) + " "+string(worker.worker_salary)+"$/D");
+		draw_text(tab_start_x+5,tab_start_y+5+16+50*i, "C:"+ string(worker.skill_cashregister) + ",P:" + string(worker.skill_productstacking)+",R:" + string(worker.skill_repairing)+",C:" + string(worker.skill_cleaning) + " "+string(worker.worker_salary)+"$/D");
 		
 		var worker_action_as_text = "Czeka na zadanie...";
 		if(worker.worker_state == 1){
@@ -405,13 +405,15 @@ if(ui_tabs_selected == "MONEY"){
 			worker_action_as_text = "Obsluguje kase sklepowa"	
 		}else if(worker.worker_state == 4){
 			worker_action_as_text = "Naprawia bankomat"	
+		}else if(worker.worker_state == 5){
+			worker_action_as_text = "Odklada koszyk na miejsce"	
 		}
 		draw_text_ext(tab_start_x+200,tab_start_y+5+50*i,worker_action_as_text,16,200);
 		
 		draw_set_color(c_red);
 		draw_rectangle(tab_end_x-5-30*0-25,tab_start_y+5+50*i,tab_end_x-5-30*0,tab_start_y+30+50*i,false);
 		
-		if(worker.worker_ai_repairing){
+		if(worker.worker_ai_cleaning){
 			draw_set_color(c_aqua);
 		}else{
 			draw_set_color(c_white);	
@@ -419,19 +421,26 @@ if(ui_tabs_selected == "MONEY"){
 		
 		draw_rectangle(tab_end_x-5-30*1-25,tab_start_y+5+50*i,tab_end_x-5-30*1,tab_start_y+30+50*i,false);
 		
-		if(worker.worker_ai_productstacking){
+		if(worker.worker_ai_repairing){
 			draw_set_color(c_aqua);
 		}else{
 			draw_set_color(c_white);	
 		}
 		draw_rectangle(tab_end_x-5-30*2-25,tab_start_y+5+50*i,tab_end_x-5-30*2,tab_start_y+30+50*i,false);
 		
-		if(worker.worker_ai_cashregister){
+		if(worker.worker_ai_productstacking){
 			draw_set_color(c_aqua);
 		}else{
 			draw_set_color(c_white);	
 		}
 		draw_rectangle(tab_end_x-5-30*3-25,tab_start_y+5+50*i,tab_end_x-5-30*3,tab_start_y+30+50*i,false);
+		
+		if(worker.worker_ai_cashregister){
+			draw_set_color(c_aqua);
+		}else{
+			draw_set_color(c_white);	
+		}
+		draw_rectangle(tab_end_x-5-30*4-25,tab_start_y+5+50*i,tab_end_x-5-30*4,tab_start_y+30+50*i,false);
 	}
 	
 	draw_set_color(c_white);
@@ -473,6 +482,11 @@ if(ui_tabs_selected == "MONEY"){
 			quest_progress = current_quests[? "PROGRESS"];
 			var current_quests_progress_required = current_quests[? "PROGRESS_REQUIRED"];
 			current_quests_text = "Zarob %MAXPROGRESS% Pieniedzy (%PROGRESS%/%MAXPROGRESS%)\nNagroda: "+string(round(current_quests_progress_required*0.1))+"$";
+			current_quests_text = string_replace_all(current_quests_text,"%MAXPROGRESS%",string(current_quests_progress_required))
+		}else if(current_quests_name == "SELL_PRODUCTS"){
+			quest_progress = current_quests[? "PROGRESS"];
+			var current_quests_progress_required = current_quests[? "PROGRESS_REQUIRED"];
+			current_quests_text = "Sprzedaj %MAXPROGRESS% Produktow (%PROGRESS%/%MAXPROGRESS%)\nNagroda: 50$";
 			current_quests_text = string_replace_all(current_quests_text,"%MAXPROGRESS%",string(current_quests_progress_required))
 		}
 		current_quests_text = string_replace(current_quests_text,"%PROGRESS%",string(quest_progress))

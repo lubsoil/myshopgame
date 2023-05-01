@@ -40,6 +40,7 @@ current_product = floor(random(ds_list_size(shopping_list)));
 atmmachine_need = floor(random(5)) == 0 ? true : false;
 atmmachine_used = false;
 
+shoppingcart_randomdrop = floor(random(8)) == 0 ? true : false;
 shoppingcart_used = false;
 
 interaction_attempts = 0;
@@ -239,6 +240,33 @@ function sellAllProducts(){
 		var product_name = ds_list_find_value(cart_list, i);
 		addMoney(round(getProductCost(product_name)*obj_game_run.sales_margin),"PRODUCT");
 	}
+	
+	//QUESTS ACTIONS
+	for(var i=0;i<ds_list_size(obj_game_run.quests_list);i++)
+	{
+		var current_quests = ds_list_find_value(obj_game_run.quests_list,i);
+					
+		var current_quests_completed = current_quests[? "COMPLETED"];
+		
+		if(current_quests_completed == false){
+			var current_quests_name = current_quests[? "NAME"];
+				
+			if(current_quests_name == "SELL_PRODUCTS"){
+				var current_quests_progress_required = current_quests[? "PROGRESS_REQUIRED"];
+				//DODAWANIE WARUNKÓW
+				current_quests[? "PROGRESS"] += ds_list_size(cart_list);
+				//WYKONANIE QUESTA
+				if(current_quests[? "PROGRESS"] >= current_quests_progress_required){
+					current_quests[? "PROGRESS"] = current_quests_progress_required;
+					current_quests[? "COMPLETED"] = true;
+					addMoney(50,"QUEST");
+				}
+							
+			}
+		}
+
+	}
+	
 	ds_list_clear(cart_list);
 }
 

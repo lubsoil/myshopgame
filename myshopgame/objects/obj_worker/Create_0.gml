@@ -18,23 +18,28 @@ worker_state = 0;
 	2 - FIXING SELF CASH REGISTER
 	3 - WORKING WITH CASH REGISTER
 	4 - FIXING ATM MACHINE
+	5 - CLEANING SHOPPINGCART TRASH
 */
 
 //UMIEJĘTNOŚCI PRACOWNIKÓW
 skill_cashregister = 0;
 skill_productstacking = 0;
 skill_repairing = 0;
+skill_cleaning = 0;
 
 skill_cashregister_progress = 0;
 skill_productstacking_progress = 0;
 skill_repairing_progress = 0;
+skill_cleaning_progress = 0;
 
 //ZADANIA PRACOWNIKÓW
 worker_ai_cashregister = true;
 worker_ai_productstacking = true;
 worker_ai_repairing = true;
+worker_ai_cleaning = true;
 
-
+//KOSZYK INFORMACJE
+shoppingcart_type = undefined;
 
 interaction_time = 120;
 interaction_attempts = 0;
@@ -93,6 +98,29 @@ function tryFindFreeWorkerCashRegister(){
 	return noone;
 }
 
+function tryFindShoppingCartTrash(){
+	var amount_shoppingcart_trash = instance_number(obj_trash_shoppingcart);
+		
+	if(amount_shoppingcart_trash > 0){
+		var trash = instance_find(obj_trash_shoppingcart, floor(random(amount_shoppingcart_trash)));
+		return trash;
+	}
+	
+	return noone;
+}
+
+function tryFindNotFullShoppingCart(type){
+	var amount_shoppingcart = instance_number(obj_shoppingcart);
+		
+	if(amount_shoppingcart > 0){
+		var shoppingcart = instance_find(obj_shoppingcart, floor(random(amount_shoppingcart)));
+		if(shoppingcart.shoppingcart_amount < shoppingcart.shoppingcart_maximum && shoppingcart.shoppingcart_type == type){
+			return shoppingcart;
+		}
+	}
+	return noone;
+}
+
 function gainSkillProgress(type){
 	switch(type){
 		case "REPAIRING":
@@ -125,9 +153,20 @@ function gainSkillProgress(type){
 				}
 			}
 		break;
+		
+		case "CLEANING":
+			if(skill_cleaning_progress < 15*skill_cleaning + 10){
+				skill_cleaning_progress++;
+			}else{
+				if(skill_cleaning < 3){
+					skill_cleaning++;
+					skill_cleaning_progress=0;
+				}
+			}
+		break;
 	}
 	
-	worker_salary = 25 + skill_productstacking*3 + skill_cashregister*3 + skill_repairing*3
+	worker_salary = 25 + skill_productstacking*2 + skill_cashregister*1 + skill_repairing*4 + skill_cleaning*2
 }
 
 
