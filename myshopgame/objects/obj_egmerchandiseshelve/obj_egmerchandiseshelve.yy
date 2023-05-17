@@ -32,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_egmerchandiseshelve",
-    "path": "sprites/spr_egmerchandiseshelve/spr_egmerchandiseshelve.yy",
+    "name": "spr_bo_shelf_egmerchandiseshelve",
+    "path": "sprites/spr_bo_shelf_egmerchandiseshelve/spr_bo_shelf_egmerchandiseshelve.yy",
   },
   "spriteMaskId": null,
   "visible": true,

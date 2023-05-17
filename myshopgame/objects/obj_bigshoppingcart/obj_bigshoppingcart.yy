@@ -5,6 +5,7 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":10,"eventType":7,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -32,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_bigshoppingcart",
-    "path": "sprites/spr_bigshoppingcart/spr_bigshoppingcart.yy",
+    "name": "spr_bo_shoppingcart_big",
+    "path": "sprites/spr_bo_shoppingcart_big/spr_bo_shoppingcart_big.yy",
   },
   "spriteMaskId": null,
   "visible": true,

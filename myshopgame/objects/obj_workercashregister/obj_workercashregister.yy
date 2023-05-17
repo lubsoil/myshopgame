@@ -33,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_workercashregister",
-    "path": "sprites/spr_workercashregister/spr_workercashregister.yy",
+    "name": "spr_bo_cashregister_worker",
+    "path": "sprites/spr_bo_cashregister_worker/spr_bo_cashregister_worker.yy",
   },
   "spriteMaskId": null,
   "visible": true,

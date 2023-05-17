@@ -7,6 +7,9 @@ if(obj == noone){
 if(obj == noone){
 	obj = instance_position(mouse_x,mouse_y,obj_decoration_floor);
 }
+if(obj == noone){
+	obj = instance_position(mouse_x,mouse_y,obj_door);
+}
 if(obj != noone){
 	var temp_instance_1 = instance_position(obj.x-32,obj.y+32,obj_buildmodeobject);
 	var temp_instance_2 = instance_position(obj.x+32,obj.y-32,obj_buildmodeobject);
@@ -50,7 +53,7 @@ if(obj != noone){
 	
 	mp_grid_destroy(collision_grid);
 	collision_grid = mp_grid_create(0,0,room_width/64,room_height/64,64,64);
-	mp_grid_add_instances(collision_grid,obj_buildmodeobject,0);
+	mp_grid_add_instances(collision_grid,obj_buildmodeobject,true);
 	
 	available_products = getAvailableProducts(available_products);
 }

@@ -139,7 +139,7 @@ if(!action_cancelled){
 			var object = asset_get_index(buildmode_object[? "OBJECT"]);
 			var instance_x = floor(mouse_x/64)*64 + 32;
 			var instance_y = floor(mouse_y/64)*64 + 32;
-			var can_build = instance_position(instance_x,instance_y,obj_buildmodeobject) == noone ? true : false;
+			var can_build = !position_meeting(instance_x,instance_y,obj_buildmodeobject) && !position_meeting(instance_x,instance_y,obj_door);
 	
 			if(user_money >= cost && can_build){
 			
@@ -166,7 +166,7 @@ if(!action_cancelled){
 				if(hasBuildingTag(buildmode_object, "PATHBLOCKING")){
 					mp_grid_destroy(collision_grid);
 					collision_grid = mp_grid_create(0,0,room_width/64,room_height/64,64,64);
-					mp_grid_add_instances(collision_grid,obj_buildmodeobject,0);
+					mp_grid_add_instances(collision_grid,obj_buildmodeobject,true);
 				}
 				
 				if(hasBuildingTag(buildmode_object, "SHELVE")){

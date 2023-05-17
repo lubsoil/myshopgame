@@ -6,7 +6,7 @@ if(debug_info_display){
 	draw_text(0,0,"POPULARITY: " + string(shop_popularity));
 	draw_text(0,16,"MIN GUESTS: " + string(guests_minimum));
 	draw_text(0,32,"MAX GUESTS: " + string(guests_maximum));
-	//draw_text(0,48,"FPS: " + string(fps_real));
+	draw_text(0,48,"FPS: " + string(fps_real));
 }
 
 var max_width = display_get_gui_width();
@@ -157,12 +157,19 @@ draw_line(total_left_width,max_height-32,total_left_width,max_height);
 var total_right_width = 0;
 var button_text = "P";
 var button_text_width = string_width(button_text);
+
+if(game_paused){
+	draw_set_color(c_aqua);
+	draw_rectangle(max_width-total_right_width-30,max_height-32,max_width-total_right_width,max_height,false);
+}
+
 draw_set_color(c_black);
 draw_set_valign(fa_center);
 draw_set_halign(fa_center);
 
 draw_text(max_width - total_right_width - 15,max_height-16,button_text);
 total_right_width += 30;
+
 
 draw_set_color(c_gray);
 draw_line(max_width-total_right_width,max_height-32,max_width-total_right_width,max_height);
@@ -407,6 +414,8 @@ if(ui_tabs_selected == "MONEY"){
 			worker_action_as_text = "Naprawia bankomat"	
 		}else if(worker.worker_state == 5){
 			worker_action_as_text = "Odklada koszyk na miejsce"	
+		}else if(worker.worker_state == 6){
+			worker_action_as_text = "Sprzata smieci"	
 		}
 		draw_text_ext(tab_start_x+200,tab_start_y+5+50*i,worker_action_as_text,16,200);
 		
@@ -487,6 +496,11 @@ if(ui_tabs_selected == "MONEY"){
 			quest_progress = current_quests[? "PROGRESS"];
 			var current_quests_progress_required = current_quests[? "PROGRESS_REQUIRED"];
 			current_quests_text = "Sprzedaj %MAXPROGRESS% Produktow (%PROGRESS%/%MAXPROGRESS%)\nNagroda: 50$";
+			current_quests_text = string_replace_all(current_quests_text,"%MAXPROGRESS%",string(current_quests_progress_required))
+		}else if(current_quests_name == "WORKER_GAIN_SKILL"){
+			quest_progress = current_quests[? "PROGRESS"];
+			var current_quests_progress_required = current_quests[? "PROGRESS_REQUIRED"];
+			current_quests_text = "Niech pracownik zdobedzie %MAXPROGRESS% poziom(ow) umiejetnosci (%PROGRESS%/%MAXPROGRESS%)\nNagroda: 50$";
 			current_quests_text = string_replace_all(current_quests_text,"%MAXPROGRESS%",string(current_quests_progress_required))
 		}
 		current_quests_text = string_replace(current_quests_text,"%PROGRESS%",string(quest_progress))

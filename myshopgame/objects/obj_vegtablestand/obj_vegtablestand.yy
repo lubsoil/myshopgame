@@ -32,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_vegetablestand",
-    "path": "sprites/spr_vegetablestand/spr_vegetablestand.yy",
+    "name": "spr_bo_shelf_vegetablestand",
+    "path": "sprites/spr_bo_shelf_vegetablestand/spr_bo_shelf_vegetablestand.yy",
   },
   "spriteMaskId": null,
   "visible": true,

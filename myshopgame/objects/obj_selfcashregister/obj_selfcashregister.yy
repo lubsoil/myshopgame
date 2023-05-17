@@ -34,8 +34,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_selfcashregister",
-    "path": "sprites/spr_selfcashregister/spr_selfcashregister.yy",
+    "name": "spr_bo_cashregister_self",
+    "path": "sprites/spr_bo_cashregister_self/spr_bo_cashregister_self.yy",
   },
   "spriteMaskId": null,
   "visible": true,

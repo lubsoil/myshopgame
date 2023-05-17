@@ -1,5 +1,19 @@
 if(camera_move_enabled){
-	camera_set_view_pos(view_camera[0],camera_move_xwindow - (camera_move_xstart - display_mouse_get_x())*0.75,camera_move_ywindow - (camera_move_ystart - display_mouse_get_y())*0.75);
+	var camera_x = camera_move_xwindow - (camera_move_xstart - display_mouse_get_x())*0.9;
+	var camera_y = camera_move_ywindow - (camera_move_ystart - display_mouse_get_y())*0.9;
+	if(camera_x < 0){
+		camera_x = 0;	
+	}
+	if(camera_x > room_width){
+		camera_x = room_width;	
+	}
+	if(camera_y < 0){
+		camera_y = 0;	
+	}
+	if(camera_y > room_height){
+		camera_y = room_height;	
+	}
+	camera_set_view_pos(view_camera[0],camera_x,camera_y);
 }
 
 

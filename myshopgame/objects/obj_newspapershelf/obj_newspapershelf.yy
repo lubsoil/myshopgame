@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_newspapershelf",
-    "path": "sprites/spr_newspapershelf/spr_newspapershelf.yy",
+    "name": "spr_bo_shelf_newspapershelf",
+    "path": "sprites/spr_bo_shelf_newspapershelf/spr_bo_shelf_newspapershelf.yy",
   },
   "spriteMaskId": null,
   "visible": true,

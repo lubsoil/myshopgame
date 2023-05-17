@@ -4,6 +4,7 @@
   "name": "obj_mediumshoppingcart",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -31,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_mediumshoppingcart",
-    "path": "sprites/spr_mediumshoppingcart/spr_mediumshoppingcart.yy",
+    "name": "spr_bo_shoppingcart_medium",
+    "path": "sprites/spr_bo_shoppingcart_medium/spr_bo_shoppingcart_medium.yy",
   },
   "spriteMaskId": null,
   "visible": true,

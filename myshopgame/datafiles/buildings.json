@@ -78,6 +78,22 @@
         }
     },
     {
+        "NAME": "DRINKSSTAND",
+        "OBJECT": "obj_drinksstand",
+        "COST": 50,
+        "TAGS":[
+            "SHELVE",
+            "PATHBLOCKING",
+            "INTERACTABLE"
+        ],
+        "INTERACTION_POSITIONS":{
+            "TOP": "ALL",
+            "LEFT": "ALL",
+            "BOTTOM": "ALL",
+            "RIGHT": "ALL"
+        }
+    },
+    {
         "NAME": "NEWSPAPERSHELF",
         "OBJECT": "obj_newspapershelf",
         "COST": 51,
@@ -240,7 +256,7 @@
     {
         "NAME": "SMALLSHOPPINGCART",
         "OBJECT": "obj_smallshoppingcart",
-        "COST": 60,
+        "COST": 80,
         "TAGS":[
             "SHOPPINGCART",
             "SPECIAL",
@@ -257,7 +273,7 @@
     {
         "NAME": "MEDIUMSHOPPINGCART",
         "OBJECT": "obj_mediumshoppingcart",
-        "COST": 120,
+        "COST": 160,
         "TAGS":[
             "SHOPPINGCART",
             "SPECIAL",
@@ -274,7 +290,7 @@
     {
         "NAME": "BIGSHOPPINGCART",
         "OBJECT": "obj_bigshoppingcart",
-        "COST": 200,
+        "COST": 280,
         "TAGS":[
             "SHOPPINGCART",
             "SPECIAL",
@@ -291,7 +307,7 @@
     {
         "NAME": "ATMMACHINE",
         "OBJECT": "obj_atmmachine",
-        "COST": 250,
+        "COST": 400,
         "TAGS":[
             "SPECIAL",
             "PATHBLOCKING",
@@ -311,10 +327,24 @@
         "TAGS":[
             "DECORATION"
         ],
-        "ALTERNATIVE_SPRITE": "spr_doormat",
+        "ALTERNATIVE_SPRITE": "spr_bo_floordecoration_doormat",
         "CREATE_VARIABLES":{
             "decoration_type": "DOORMAT"
         },
+        "INTERACTION_POSITIONS":{
+            "TOP": "NONE",
+            "LEFT": "NONE",
+            "BOTTOM": "NONE",
+            "RIGHT": "NONE"
+        }
+    },
+    {
+        "NAME": "DOOR",
+        "OBJECT": "obj_door",
+        "COST": 15,
+        "TAGS":[
+            "DECORATION"
+        ],
         "INTERACTION_POSITIONS":{
             "TOP": "NONE",
             "LEFT": "NONE",

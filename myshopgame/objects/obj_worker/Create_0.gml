@@ -98,12 +98,27 @@ function tryFindFreeWorkerCashRegister(){
 	return noone;
 }
 
+function tryFindProductTrash(){
+	var amount_trash = instance_number(obj_trash_product);
+		
+	if(amount_trash > 0){
+		var trash = instance_find(obj_trash_product, floor(random(amount_trash)));
+		if(trash.trash_worker == noone){
+			return trash;
+		}
+	}
+	
+	return noone;
+}
+
 function tryFindShoppingCartTrash(){
 	var amount_shoppingcart_trash = instance_number(obj_trash_shoppingcart);
 		
 	if(amount_shoppingcart_trash > 0){
 		var trash = instance_find(obj_trash_shoppingcart, floor(random(amount_shoppingcart_trash)));
-		return trash;
+		if(trash.trash_worker == noone){
+			return trash;
+		}
 	}
 	
 	return noone;
@@ -122,6 +137,7 @@ function tryFindNotFullShoppingCart(type){
 }
 
 function gainSkillProgress(type){
+	var skill_gained = undefined;
 	switch(type){
 		case "REPAIRING":
 			if(skill_repairing_progress < 10*skill_repairing + 7){
@@ -129,6 +145,7 @@ function gainSkillProgress(type){
 			}else{
 				if(skill_repairing < 3){
 					skill_repairing++;
+					skill_gained = "REPAIRING";
 					skill_repairing_progress=0;
 				}
 			}
@@ -139,6 +156,7 @@ function gainSkillProgress(type){
 			}else{
 				if(skill_cashregister < 3){
 					skill_cashregister++;
+					skill_gained = "CASHREGISTER";
 					skill_cashregister_progress=0;
 				}
 			}
@@ -149,6 +167,7 @@ function gainSkillProgress(type){
 			}else{
 				if(skill_productstacking < 3){
 					skill_productstacking++;
+					skill_gained = "PRODUCTSTACKING";
 					skill_productstacking_progress=0;
 				}
 			}
@@ -160,10 +179,37 @@ function gainSkillProgress(type){
 			}else{
 				if(skill_cleaning < 3){
 					skill_cleaning++;
+					skill_gained = "CLEANING";
 					skill_cleaning_progress=0;
 				}
 			}
 		break;
+	}
+	
+	//QUESTS ACTIONS
+	for(var i=0;i<ds_list_size(obj_game_run.quests_list);i++)
+	{
+		var current_quests = ds_list_find_value(obj_game_run.quests_list,i);
+					
+		var current_quests_completed = current_quests[? "COMPLETED"];
+		
+		if(current_quests_completed == false){
+			var current_quests_name = current_quests[? "NAME"];
+				
+			if(current_quests_name == "WORKER_GAIN_SKILL" && skill_gained != undefined){
+				var current_quests_progress_required = current_quests[? "PROGRESS_REQUIRED"];
+				//DODAWANIE WARUNKÓW
+				current_quests[? "PROGRESS"] += 1;
+				//WYKONANIE QUESTA
+				if(current_quests[? "PROGRESS"] >= current_quests_progress_required){
+					current_quests[? "PROGRESS"] = current_quests_progress_required;
+					current_quests[? "COMPLETED"] = true;
+					addMoney(50,"QUEST");
+				}
+							
+			}
+		}
+
 	}
 	
 	worker_salary = 25 + skill_productstacking*2 + skill_cashregister*1 + skill_repairing*4 + skill_cleaning*2

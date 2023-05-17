@@ -171,6 +171,18 @@ function findCurrentProduct(){
 				}
 			}
 		}	
+	}else if(current_product_name == "JUICEBOTTLE"||current_product_name == "WATERBOTTLE"){
+		var amount_shelfs = instance_number(obj_drinksstand);
+		
+		if(amount_shelfs > 0){
+			var shelf = instance_find(obj_drinksstand, floor(random(amount_shelfs)));
+			var stock_amount = shelf.product_stock[? current_product_name];
+			if(stock_amount != undefined){
+				if(stock_amount > 0){
+					return shelf;
+				}
+			}
+		}	
 	}else{
 		var amount_shelfs = instance_number(obj_productshelf);
 		

@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_boardgamesshelf",
-    "path": "sprites/spr_boardgamesshelf/spr_boardgamesshelf.yy",
+    "name": "spr_bo_shelf_boardgamesshelf",
+    "path": "sprites/spr_bo_shelf_boardgamesshelf/spr_bo_shelf_boardgamesshelf.yy",
   },
   "spriteMaskId": null,
   "visible": true,

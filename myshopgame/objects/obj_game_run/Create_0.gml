@@ -1,3 +1,5 @@
+game_paused = false;
+
 camera_move_xwindow = 0;
 camera_move_ywindow = 0;
 camera_move_xstart = 0;
@@ -30,7 +32,7 @@ time_hour = 360;
 //KOLIZJE
 
 collision_grid = mp_grid_create(0,0,room_width/64,room_height/64,64,64);
-mp_grid_add_instances(collision_grid,obj_buildmodeobject,0);
+mp_grid_add_instances(collision_grid,obj_buildmodeobject,true);
 
 //ZADANIA
 quests_list = ds_list_create();
@@ -47,12 +49,17 @@ ds_map_add(start_game_quest,"COMPLETED", false);
 ds_list_add(quests_list,start_game_quest);
 ds_list_mark_as_map(quests_list,ds_list_size(quests_list)-1);
 
-var quest_random = floor(random(2));
+var quest_random = floor(random(3));
 var start_game_quest = ds_map_create();
 if(quest_random == 0){
 	ds_map_add(start_game_quest,"NAME","EARN_MONEY");
 	ds_map_add(start_game_quest,"PROGRESS",0);
 	ds_map_add(start_game_quest,"PROGRESS_REQUIRED",500);
+	ds_map_add(start_game_quest,"COMPLETED", false);
+}else if(quest_random == 1){
+	ds_map_add(start_game_quest,"NAME","WORKER_GAIN_SKILL");
+	ds_map_add(start_game_quest,"PROGRESS",0);
+	ds_map_add(start_game_quest,"PROGRESS_REQUIRED",1);
 	ds_map_add(start_game_quest,"COMPLETED", false);
 }else{
 	ds_map_add(start_game_quest,"NAME","SELL_PRODUCTS");
@@ -89,3 +96,4 @@ ds_list_mark_as_map(money_usage_history,ds_list_size(money_usage_history)-1);
 user_money = 500;
 
 alarm[0] = 60;
+alarm[1] = 1;

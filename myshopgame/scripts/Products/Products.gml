@@ -34,6 +34,10 @@ function getProductCost(name){
 			return 8;
 		case "EFTSFIGURE":
 			return 8;
+		case "WATERBOTTLE":
+			return 2;
+		case "JUICEBOTTLE":
+			return 5;
 		default:
 			return 10;
 	}

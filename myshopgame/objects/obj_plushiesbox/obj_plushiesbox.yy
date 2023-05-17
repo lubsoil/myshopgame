@@ -32,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_plushiesbox",
-    "path": "sprites/spr_plushiesbox/spr_plushiesbox.yy",
+    "name": "spr_bo_shelf_plushiesbox",
+    "path": "sprites/spr_bo_shelf_plushiesbox/spr_bo_shelf_plushiesbox.yy",
   },
   "spriteMaskId": null,
   "visible": true,

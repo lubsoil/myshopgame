@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_freezer",
-    "path": "sprites/spr_freezer/spr_freezer.yy",
+    "name": "spr_bo_shelf_freezer",
+    "path": "sprites/spr_bo_shelf_freezer/spr_bo_shelf_freezer.yy",
   },
   "spriteMaskId": null,
   "visible": true,

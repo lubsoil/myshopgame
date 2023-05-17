@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_bookshelf",
-    "path": "sprites/spr_bookshelf/spr_bookshelf.yy",
+    "name": "spr_bo_shelf_bookshelf",
+    "path": "sprites/spr_bo_shelf_bookshelf/spr_bo_shelf_bookshelf.yy",
   },
   "spriteMaskId": null,
   "visible": true,

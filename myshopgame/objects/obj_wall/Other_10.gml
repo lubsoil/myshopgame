@@ -23,7 +23,23 @@ if(isTopWall && isBottomWall && !isLeftWall && !isRightWall){
 }else if(isBottomWall && isRightWall && !isLeftWall && !isTopWall){
 	image_index = 1;
 	image_angle = 90;
+}else if(isBottomWall && isRightWall && isLeftWall && !isTopWall){
+	image_index = 2;
+	image_angle = 90;
+}else if(isBottomWall && !isRightWall && isLeftWall && isTopWall){
+	image_index = 2;
+	image_angle = 0;
+}else if(!isBottomWall && isRightWall && isLeftWall && isTopWall){
+	image_index = 2;
+	image_angle = 270;
+}else if(isBottomWall && isRightWall && !isLeftWall && isTopWall){
+	image_index = 2;
+	image_angle = 180;
+}else if(isBottomWall && isRightWall && isLeftWall && isTopWall){
+	image_index = 3;
+	image_angle = 0;
 }
+
 
 
 isLeftFreePosition = "none";

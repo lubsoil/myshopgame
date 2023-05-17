@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_shoesshelf",
-    "path": "sprites/spr_shoesshelf/spr_shoesshelf.yy",
+    "name": "spr_bo_shelf_shoesshelf",
+    "path": "sprites/spr_bo_shelf_shoesshelf/spr_bo_shelf_shoesshelf.yy",
   },
   "spriteMaskId": null,
   "visible": true,

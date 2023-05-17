@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_musicshelf",
-    "path": "sprites/spr_musicshelf/spr_musicshelf.yy",
+    "name": "spr_bo_shelf_musicshelf",
+    "path": "sprites/spr_bo_shelf_musicshelf/spr_bo_shelf_musicshelf.yy",
   },
   "spriteMaskId": null,
   "visible": true,

@@ -34,8 +34,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_atmmachine",
-    "path": "sprites/spr_atmmachine/spr_atmmachine.yy",
+    "name": "spr_bo_atmmachine",
+    "path": "sprites/spr_bo_atmmachine/spr_bo_atmmachine.yy",
   },
   "spriteMaskId": null,
   "visible": true,

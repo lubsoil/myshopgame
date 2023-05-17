@@ -32,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_fruitsstand",
-    "path": "sprites/spr_fruitsstand/spr_fruitsstand.yy",
+    "name": "spr_bo_shelf_fruitsstand",
+    "path": "sprites/spr_bo_shelf_fruitsstand/spr_bo_shelf_fruitsstand.yy",
   },
   "spriteMaskId": null,
   "visible": true,

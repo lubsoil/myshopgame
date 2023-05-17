@@ -32,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_wall",
-    "path": "sprites/spr_wall/spr_wall.yy",
+    "name": "spr_bo_wall",
+    "path": "sprites/spr_bo_wall/spr_bo_wall.yy",
   },
   "spriteMaskId": null,
   "visible": true,

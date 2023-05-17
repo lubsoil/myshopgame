@@ -1,5 +1,6 @@
 /// @description AKCJA TWORZENIA
 person_type = "PERSON";
+person_speed = 0.5;
 
 //PATHFIDING SYSTEM
 path = path_add();
@@ -8,6 +9,8 @@ target_type = "NONE";
 target_object = noone;
 target_x = -100;
 target_y = -100;
+
+depth = -1;
 
 function resetPathfinding(){
 	target_type = "NONE";
